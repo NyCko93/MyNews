@@ -2,6 +2,7 @@ package com.fossourier.nicolas.mynews.Controllers.Activities;
 
 import android.os.Bundle;
 
+
 import com.fossourier.nicolas.mynews.R;
 
 import com.google.android.material.tabs.TabLayout;
@@ -23,5 +24,9 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+
     }
+
+
 }
