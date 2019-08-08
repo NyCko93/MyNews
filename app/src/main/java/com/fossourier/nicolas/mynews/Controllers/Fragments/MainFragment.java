@@ -1,8 +1,17 @@
 package com.fossourier.nicolas.mynews.Controllers.Fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+
+import com.fossourier.nicolas.mynews.R;
+
+import butterknife.ButterKnife;
+
+
 
 
 /**
@@ -10,20 +19,18 @@ import androidx.fragment.app.Fragment;
  */
 public class MainFragment extends Fragment {
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
+    public MainFragment() {
+    }
 
-//    private PageViewModel pageViewModel;
-
-    public static MainFragment newInstance(int index) {
+    public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(ARG_SECTION_NUMBER, index);
-        fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 }

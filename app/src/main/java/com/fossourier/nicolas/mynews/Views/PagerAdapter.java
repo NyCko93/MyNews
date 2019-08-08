@@ -1,4 +1,4 @@
-package com.fossourier.nicolas.mynews.Adapters;
+package com.fossourier.nicolas.mynews.Views;
 
 import android.content.Context;
 
@@ -30,7 +30,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a MainFragment (defined as a static inner class below).
-        return MainFragment.newInstance(position + 1);
+        return MainFragment.newInstance();
     }
 
     @Nullable
