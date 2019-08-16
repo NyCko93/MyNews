@@ -1,6 +1,7 @@
 package com.fossourier.nicolas.mynews.Utils;
 
-import com.fossourier.nicolas.mynews.Models.TopStories.TopStories;
+import com.fossourier.nicolas.mynews.Models.Article;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -11,11 +12,11 @@ import io.reactivex.schedulers.Schedulers;
 
 
 public class NewYorkTimesStreams {
-    public static Observable<TopStories> streamFetchUserFollowing(String section){
+    public static Observable<Article> streamFetchUserFollowing(String section){
         NewYorkTimesService newYorkTimesService = NewYorkTimesService.retrofit.create(NewYorkTimesService.class);
-        return newYorkTimesService.getTopStories(section)
+        return newYorkTimesService.getArticleBySection(section)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .timeout(10, TimeUnit.SECONDS);
+                .timeout(100, TimeUnit.SECONDS);
     }
 }
