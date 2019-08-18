@@ -28,4 +28,5 @@ public interface NewYorkTimesService {
                     .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                     .build())
             .build();
+
 }
