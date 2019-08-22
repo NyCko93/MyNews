@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,16 +31,14 @@ import io.reactivex.disposables.Disposable;
  */
 public class MainFragment extends Fragment {
 
-    // Declare Subscription
-    private Disposable disposable;
 
-    // FOR DESIGN
     @BindView(R.id.fragment_main_recycler_view)
-    RecyclerView recyclerView; // 1 - Declare RecyclerView
-
-    // 2 - Declare list of users (GithubUser) & Adapter
+    RecyclerView recyclerView;
+    Disposable disposable;
+    RecyclerView.LayoutManager mLayoutManager;
+    RecyclerView.Adapter mAdapter;
     private List<Result> listArticles;
-    private ArticleAdapter adapter;
+
 
     public MainFragment() {
     }
@@ -54,6 +53,12 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, view);
         this.configureRecyclerView(); // - 4 Call during UI creation
+        executeHttpRequestWithRetrofit(); // 5 - Execute stream after UI creation
+        displayArticle();
+        return view;
+    }
+
+    private void executeHttpRequestWithRetrofit() {
         NewYorkTimesStreams.streamFetchUserFollowing("science").subscribe(new Observer<Article>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -77,25 +82,40 @@ public class MainFragment extends Fragment {
 
             }
         });
-
-        return view;
-
     }
 
-    // -----------------
-    // CONFIGURATION
-    // -----------------
-
-    // 3 - Configure RecyclerView, Adapter, LayoutManager & glue it together
-    private void configureRecyclerView(){
+    // Configure RecyclerView, Adapter, LayoutManager & glue it together
+    private void configureRecyclerView() {
+//        recyclerView = (RecyclerView) recyclerView.findViewById(R.id.fragment_main_recycler_view);
         // 3.1 - Reset list
         this.listArticles = new ArrayList<>();
         // 3.2 - Create adapter passing the list of users
-        this.adapter = new ArticleAdapter(this.listArticles);
+        this.mAdapter = new ArticleAdapter(this.listArticles);
         // 3.3 - Attach the adapter to the recyclerview to populate items
-        this.recyclerView.setAdapter(this.ArticleAdapter);
+        this.recyclerView.setAdapter(this.mAdapter);
         // 3.4 - Set layout manager to position the items
-        this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        this.recyclerView.setLayoutManager(mLayoutManager);
+    }
+
+//    // Constructor of RecyclerView
+//    private void buildRecyclerView() {
+//        RecyclerView recyclerView = null;
+//        recyclerView = (RecyclerView) recyclerView.findViewById(R.id.fragment_main_recycler_view);
+//        new LinearLayoutManager(getActivity());
+//        ArticleAdapter adapter=new ArticleAdapter(listArticles);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        recyclerView.setAdapter(adapter);
+//
+//    }
+
+    // Method to manage the display of history
+    private void displayArticle() {
+        if (listArticles.size() > 0) {
+            listArticles.remove(listArticles.size() - 1);
+        }
+
+        if (listArticles.size() < 1)
+            Toast.makeText(getActivity(), "Vous n'avez pas d'historique à afficher", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -106,14 +126,5 @@ public class MainFragment extends Fragment {
 
     private void disposeWhenDestroy() {
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
-    }
-
-    // -------------------
-    // UPDATE UI
-    // -------------------
-
-    private void updateUI(List<Result> article){
-        listArticles.addAll(article);
-        adapter.notifyDataSetChanged();
     }
 }

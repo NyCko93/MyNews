@@ -17,7 +17,7 @@ public class Result {
     private String subsection;
     @SerializedName("title")
     @Expose
-    private String title;
+    private static String title;
     @SerializedName("adx_keywords")
     @Expose
     private String adxKeywords;
@@ -42,16 +42,16 @@ public class Result {
 
     @SerializedName("multimedia")
     @Expose
-    private List<Multimedium> multimedia = null;
+    private static List<Multimedium> multimedia = null;
     @SerializedName("type")
     @Expose
     private String type;
     @SerializedName("abstract")
     @Expose
-    private String _abstract;
+    private static String _abstract;
     @SerializedName("published_date")
     @Expose
-    private String publishedDate;
+    private static String publishedDate;
     @SerializedName("source")
     @Expose
     private String source;
@@ -97,7 +97,7 @@ public class Result {
     }
 
 
-    public String getTitle() {
+    public static String getTitle() {
         return title;
     }
 
@@ -116,7 +116,7 @@ public class Result {
     }
 
 
-    public List<Multimedium> getMultimedia() {
+    public static List<Multimedium> getMultimedia() {
         return multimedia;
     }
 
@@ -160,7 +160,7 @@ public class Result {
         this.type = type;
     }
 
-    public String getAbstract() {
+    public static String getAbstract() {
         return _abstract;
     }
 
@@ -168,7 +168,7 @@ public class Result {
         this._abstract = _abstract;
     }
 
-    public String getPublishedDate() {
+    public static String getPublishedDate() {
         return publishedDate;
     }
 
