@@ -97,7 +97,7 @@ public class Result {
     }
 
 
-    public static String getTitle() {
+    public String getTitle() {
         return title;
     }
 
@@ -116,7 +116,7 @@ public class Result {
     }
 
 
-    public static List<Multimedium> getMultimedia() {
+    public List<Multimedium> getMultimedia() {
         return multimedia;
     }
 
@@ -160,7 +160,7 @@ public class Result {
         this.type = type;
     }
 
-    public static String getAbstract() {
+    public String getAbstract() {
         return _abstract;
     }
 
@@ -168,7 +168,7 @@ public class Result {
         this._abstract = _abstract;
     }
 
-    public static String getPublishedDate() {
+    public String getPublishedDate() {
         return publishedDate;
     }
 

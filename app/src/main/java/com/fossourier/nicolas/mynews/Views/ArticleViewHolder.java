@@ -18,7 +18,6 @@ import butterknife.ButterKnife;
 // For RecyclerView
 public class ArticleViewHolder extends RecyclerView.ViewHolder {
 
-    final View mainLayout;
     @BindView(R.id.fragment_main_item_title) TextView textTitle;
     @BindView(R.id.fragment_main_item_date) TextView textDate;
     @BindView(R.id.fragment_main_item_description) TextView textAbstract;
@@ -32,15 +31,12 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
 
         ButterKnife.bind(this, itemView);
 
-        mainLayout=itemView.findViewById(R.id.item_article);
-
     }
-    public void updateWithArticles(Result articles) {
+    public void updateWithArticles(Result listArticles) {
 
-        this.textTitle.setText(Result.getTitle());
-        this.textDate.setText(Result.getPublishedDate());
-        this.textAbstract.setText(Result.getAbstract());
-        this.imageArticle.setImageDrawable((Drawable) Result.getMultimedia());
+        this.textTitle.setText(listArticles.getTitle());
+        this.textDate.setText(listArticles.getUpdatedDate());
+        this.textAbstract.setText(listArticles.getByline());
 
     }
 

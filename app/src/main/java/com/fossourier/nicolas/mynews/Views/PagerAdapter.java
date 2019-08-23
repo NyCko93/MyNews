@@ -30,7 +30,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a MainFragment (defined as a static inner class below).
-        return MainFragment.newInstance();
+        return MainFragment.newInstance(position);
     }
 
     @Nullable

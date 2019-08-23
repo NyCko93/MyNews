@@ -12,11 +12,30 @@ import io.reactivex.schedulers.Schedulers;
 
 
 public class NewYorkTimesStreams {
-    public static Observable<Article> streamFetchUserFollowing(String section){
+
+    public static Observable<Article> streamArticles(String section){
         NewYorkTimesService newYorkTimesService = NewYorkTimesService.retrofit.create(NewYorkTimesService.class);
-        return newYorkTimesService.getArticleBySection(section)
+        return newYorkTimesService.getArticleTopStories(section)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(100, TimeUnit.SECONDS);
     }
+
+//    public static Observable<Article> streamMostPopular(){
+//        NewYorkTimesService newYorkTimesService = NewYorkTimesService.retrofit.create(NewYorkTimesService.class);
+//        return newYorkTimesService.getArticleMostPopular()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .timeout(100, TimeUnit.SECONDS);
+//    }
+//
+//    public static Observable<Article> streamMovieReviews(){
+//        NewYorkTimesService newYorkTimesService = NewYorkTimesService.retrofit.create(NewYorkTimesService.class);
+//        return newYorkTimesService.getArticleMovieReviews()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .timeout(100, TimeUnit.SECONDS);
+//    }
+
+
 }

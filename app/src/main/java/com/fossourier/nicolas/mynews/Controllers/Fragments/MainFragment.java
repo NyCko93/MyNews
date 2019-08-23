@@ -32,56 +32,132 @@ import io.reactivex.disposables.Disposable;
 public class MainFragment extends Fragment {
 
 
+    private static final String POSITION = "POSITION";
     @BindView(R.id.fragment_main_recycler_view)
     RecyclerView recyclerView;
     Disposable disposable;
-    RecyclerView.LayoutManager mLayoutManager;
-    RecyclerView.Adapter mAdapter;
-    private List<Result> listArticles;
+    RecyclerView.Adapter<com.fossourier.nicolas.mynews.Views.ArticleViewHolder> mAdapter;
+    private List<Result> listArticles = new ArrayList<>();
+    private int mPosition;
 
 
     public MainFragment() {
     }
 
-    public static MainFragment newInstance() {
+    public static MainFragment newInstance(int position) {
         MainFragment fragment = new MainFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(POSITION, position);
+        fragment.setArguments(bundle);
         return fragment;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, view);
+        mPosition = getArguments().getInt(POSITION);
         this.configureRecyclerView(); // - 4 Call during UI creation
-        executeHttpRequestWithRetrofit(); // 5 - Execute stream after UI creation
-        displayArticle();
+        executeHttpRequestTopStories(); // Request TopStories
+//        executeHttpRequestMovieReviews(); // Request MovieReviews
+//        executeHttpRequestMostPopular(); // Request MostPopular
+//        displayFragment();
         return view;
     }
 
-    private void executeHttpRequestWithRetrofit() {
-        NewYorkTimesStreams.streamFetchUserFollowing("science").subscribe(new Observer<Article>() {
+    private void executeHttpRequestTopStories() {
+        NewYorkTimesStreams.streamArticles("science").subscribe(new Observer<Article>() {
+
             @Override
             public void onSubscribe(Disposable d) {
-
             }
 
             @Override
             public void onNext(Article article) {
-
+                listArticles.clear();
+                listArticles.addAll(article.getResult());
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.e("TAG", "On Error" + Log.getStackTraceString(e));
-
             }
 
             @Override
             public void onComplete() {
                 Log.e("TAG", "On Complete !!");
-
+                updateUI();
             }
         });
+    }
+
+//    private void executeHttpRequestMostPopular() {
+//        NewYorkTimesStreams.streamMostPopular().subscribe(new Observer<Article>() {
+//
+//            @Override
+//            public void onSubscribe(Disposable d) {
+//            }
+//
+//            @Override
+//            public void onNext(Article article) {
+//                listArticles.clear();
+//                listArticles.addAll(article.getResult());
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//                Log.e("TAG", "On Error" + Log.getStackTraceString(e));
+//            }
+//
+//            @Override
+//            public void onComplete() {
+//                Log.e("TAG", "On Complete !!");
+//                updateUI();
+//            }
+//        });
+//    }
+//
+//    private void executeHttpRequestMovieReviews() {
+//        NewYorkTimesStreams.streamMovieReviews().subscribe(new Observer<Article>() {
+//
+//            @Override
+//            public void onSubscribe(Disposable d) {
+//            }
+//
+//            @Override
+//            public void onNext(Article article) {
+//                listArticles.clear();
+//                listArticles.addAll(article.getResult());
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//                Log.e("TAG", "On Error" + Log.getStackTraceString(e));
+//            }
+//
+//            @Override
+//            public void onComplete() {
+//                Log.e("TAG", "On Complete !!");
+//                updateUI();
+//            }
+//        });
+//    }
+//
+//    private void displayFragment(){
+//        switch (mPosition) {
+//            case 0: executeHttpRequestTopStories();
+//            break;
+//            case 1: executeHttpRequestMostPopular();
+//            break;
+//            case 2: executeHttpRequestMovieReviews();
+//            break;
+//        }
+//    }
+
+    private void updateUI() {
+        displayArticle();
+        mAdapter.notifyDataSetChanged();
     }
 
     // Configure RecyclerView, Adapter, LayoutManager & glue it together
@@ -94,26 +170,11 @@ public class MainFragment extends Fragment {
         // 3.3 - Attach the adapter to the recyclerview to populate items
         this.recyclerView.setAdapter(this.mAdapter);
         // 3.4 - Set layout manager to position the items
-        this.recyclerView.setLayoutManager(mLayoutManager);
+        this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
-
-//    // Constructor of RecyclerView
-//    private void buildRecyclerView() {
-//        RecyclerView recyclerView = null;
-//        recyclerView = (RecyclerView) recyclerView.findViewById(R.id.fragment_main_recycler_view);
-//        new LinearLayoutManager(getActivity());
-//        ArticleAdapter adapter=new ArticleAdapter(listArticles);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        recyclerView.setAdapter(adapter);
-//
-//    }
 
     // Method to manage the display of history
     private void displayArticle() {
-        if (listArticles.size() > 0) {
-            listArticles.remove(listArticles.size() - 1);
-        }
-
         if (listArticles.size() < 1)
             Toast.makeText(getActivity(), "Vous n'avez pas d'historique à afficher", Toast.LENGTH_LONG).show();
     }
@@ -127,4 +188,5 @@ public class MainFragment extends Fragment {
     private void disposeWhenDestroy() {
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
     }
+
 }
