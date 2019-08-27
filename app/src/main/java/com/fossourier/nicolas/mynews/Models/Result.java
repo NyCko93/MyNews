@@ -17,7 +17,7 @@ public class Result {
     private String subsection;
     @SerializedName("title")
     @Expose
-    private static String title;
+    private String title;
     @SerializedName("adx_keywords")
     @Expose
     private String adxKeywords;
@@ -42,16 +42,16 @@ public class Result {
 
     @SerializedName("multimedia")
     @Expose
-    private static List<Multimedium> multimedia = null;
+    private List<Multimedium> multimedia = null;
     @SerializedName("type")
     @Expose
     private String type;
     @SerializedName("abstract")
     @Expose
-    private static String _abstract;
+    private String _abstract;
     @SerializedName("published_date")
     @Expose
-    private static String publishedDate;
+    private String publishedDate;
     @SerializedName("source")
     @Expose
     private String source;

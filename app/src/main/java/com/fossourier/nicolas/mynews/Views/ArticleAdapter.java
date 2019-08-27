@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.RequestManager;
 import com.fossourier.nicolas.mynews.Models.Result;
 import com.fossourier.nicolas.mynews.R;
 
@@ -26,11 +27,13 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
     private ViewHolder viewHolder;
     private int position;
     public TextView textView;
-
+    // 1 - Declaring a Glide object
+    private RequestManager glide;
 
     // CONSTRUCTOR
-    public ArticleAdapter(List<Result> listArticles) {
+    public ArticleAdapter(List<Result> listArticles, RequestManager glide) {
         this.listArticles = listArticles;
+        this.glide = glide;
     }
 
     @Override
@@ -46,7 +49,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
     // UPDATE VIEW HOLDER WITH ARTICLES
     @Override
     public void onBindViewHolder(ArticleViewHolder viewHolder, int position) {
-        viewHolder.updateWithArticles(this.listArticles.get(position));
+        viewHolder.updateWithArticles(this.listArticles.get(position), this.glide);
     }
 
     // RETURN THE TOTAL COUNT OF ITEMS IN THE LIST

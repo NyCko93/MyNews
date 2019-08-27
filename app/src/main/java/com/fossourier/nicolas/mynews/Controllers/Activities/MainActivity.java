@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.fossourier.nicolas.mynews.Controllers.Fragments.MainFragment;
 import com.fossourier.nicolas.mynews.R;
 import com.fossourier.nicolas.mynews.Views.PagerAdapter;
 import com.google.android.material.tabs.TabLayout;

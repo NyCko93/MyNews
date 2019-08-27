@@ -21,21 +21,21 @@ public class NewYorkTimesStreams {
                 .timeout(100, TimeUnit.SECONDS);
     }
 
-//    public static Observable<Article> streamMostPopular(){
-//        NewYorkTimesService newYorkTimesService = NewYorkTimesService.retrofit.create(NewYorkTimesService.class);
-//        return newYorkTimesService.getArticleMostPopular()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .timeout(100, TimeUnit.SECONDS);
-//    }
-//
-//    public static Observable<Article> streamMovieReviews(){
-//        NewYorkTimesService newYorkTimesService = NewYorkTimesService.retrofit.create(NewYorkTimesService.class);
-//        return newYorkTimesService.getArticleMovieReviews()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .timeout(100, TimeUnit.SECONDS);
-//    }
+    public static Observable<Article> streamMostPopular(){
+        NewYorkTimesService newYorkTimesService = NewYorkTimesService.retrofit.create(NewYorkTimesService.class);
+        return newYorkTimesService.getArticleMostPopular()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(100, TimeUnit.SECONDS);
+    }
+
+    public static Observable<Article> streamMovieReviews(){
+        NewYorkTimesService newYorkTimesService = NewYorkTimesService.retrofit.create(NewYorkTimesService.class);
+        return newYorkTimesService.getArticleMovieReviews()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(100, TimeUnit.SECONDS);
+    }
 
 
 }
