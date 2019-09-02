@@ -16,12 +16,14 @@ import com.fossourier.nicolas.mynews.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.fossourier.nicolas.mynews.R.drawable.nytimesdefault;
+
 // For RecyclerView
 public class ArticleViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.fragment_main_item_title) TextView textTitle;
+    @BindView(R.id.fragment_main_item_section) TextView textSection;
     @BindView(R.id.fragment_main_item_date) TextView textDate;
-    @BindView(R.id.fragment_main_item_description) TextView textAbstract;
+    @BindView(R.id.fragment_main_item_title) TextView textTitle;
     @BindView(R.id.fragment_main_item_image) ImageView imageArticle;
 
     private TextView title;
@@ -49,10 +51,18 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
     public void updateWithArticles(Result listArticles, RequestManager glide) {
 
         this.textTitle.setText(listArticles.getTitle());
-        this.textDate.setText(listArticles.getPublishedDate());
-        this.textAbstract.setText(listArticles.getAbstract());
-        glide.load(listArticles.getMultimedia()).apply(RequestOptions.circleCropTransform()).into(imageArticle);
 
+        this.textDate.setText(listArticles.getPublishedDate());
+
+        this.textSection.setText(listArticles.getSection());
+
+        if(listArticles.getMultimedia().size() <1) imageArticle.setImageResource(nytimesdefault);
+
+        else {
+
+            glide.load(listArticles.getMultimedia()).apply(RequestOptions.circleCropTransform()).into(imageArticle);
+
+        }
     }
 
 }

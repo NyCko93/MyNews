@@ -2,6 +2,7 @@ package com.fossourier.nicolas.mynews.Views;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,18 +31,45 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a MainFragment (defined as a static inner class below).
         switch (position) {
-            case 0: MainFragment.newInstance(0).executeHttpRequestTopStories();
+            case 0:
+                MainFragment.newInstance(0).executeHttpRequestTopStories();
+                Log.e("TAG", "Requete TopStories !!");
                 break;
-            case 1: MainFragment.newInstance(1).executeHttpRequestMostPopular();
+            case 1:
+                MainFragment.newInstance(1).executeHttpRequestMostPopular();
+                Log.e("TAG", "Requete MostPopular !!");
                 break;
-            case 2: MainFragment.newInstance(2).executeHttpRequestMovieReviews();
+            case 2:
+                MainFragment.newInstance(2).executeHttpRequestMovieReviews();
+                Log.e("TAG", "Requete MovieReviews !!");
                 break;
         }
+
         return MainFragment.newInstance(position);
+
     }
+
+
+
+
+//    @Override
+//    public Fragment getItem(int position) {
+//        // getItem is called to instantiate the fragment for the given page.
+//        // Return a MainFragment (defined as a static inner class below).
+//        switch (position) {
+//            case 0: MainFragment.newInstance(0).executeHttpRequestTopStories();
+//                Log.e("TAG", "Requete TopStories !!");
+//                break;
+//            case 1: MainFragment.newInstance(1);
+//                Log.e("TAG", "Requete MostPopular !!");
+//                break;
+//            case 2: MainFragment.newInstance(2);
+//                Log.e("TAG", "Requete MovieReviews !!");
+//                break;
+//        }
+//        return MainFragment.newInstance(position);
+//    }
 
     @Nullable
     @Override

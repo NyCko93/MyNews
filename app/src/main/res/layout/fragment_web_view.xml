@@ -9,8 +9,5 @@
     <WebView
         android:id="@+id/webview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible"
-        tools:layout_editor_absoluteX="204dp"
-        tools:layout_editor_absoluteY="362dp" />
+        android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
