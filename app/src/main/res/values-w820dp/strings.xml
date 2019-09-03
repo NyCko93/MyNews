@@ -3,11 +3,11 @@
     <string name="app_name">My News</string>
     <string name="tab_text_1">Top Stories</string>
     <string name="tab_text_2">Most Popular</string>
-    <string name="tab_text_3">Sports </string>
+    <string name="tab_text_3">MovieReviews </string>
     <string name="hello_blank_fragment">hello blank fragment</string>
     <string name="refresh">Refresh</string>
-    <string name="description">Description</string>
+    <string name="content">Content</string>
     <string name="date">Date</string>
-    <string name="Title">Title</string>
-    <string name="Image">Image</string>
+    <string name="section">Section</string>
+    <string name="image">Image</string>
 </resources>

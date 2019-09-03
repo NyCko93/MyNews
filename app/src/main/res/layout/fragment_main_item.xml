@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:padding="5dp"
-                android:text="@string/Image" />
+                android:text="@string/image" />
         </LinearLayout>
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="0dp"
@@ -34,17 +34,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="8">
+
                 <TextView
                     android:id="@+id/fragment_main_item_section"
                     android:layout_width="0dp"
-                    android:layout_height="17dp"
+                    android:layout_height="20dp"
                     android:layout_margin="5dp"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorTitle"
-                    android:text="@string/Title"
                     android:layout_weight="6"
-                    />
+                    android:text="@string/section"
+                    android:textColor="@color/colorSection"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/fragment_main_item_date"
@@ -63,7 +63,7 @@
                 android:layout_weight="9">
 
                 <TextView
-                    android:id="@+id/fragment_main_item_title"
+                    android:id="@+id/fragment_main_item_content"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginStart="5dp"
@@ -71,8 +71,8 @@
                     android:maxLines="2"
                     android:paddingStart="5dp"
                     android:paddingEnd="30dp"
-                    android:text="@string/Title"
-                    android:textColor="@color/colorDescription"
+                    android:text="@string/content"
+                    android:textColor="@color/colorContent"
                     android:textSize="15sp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 

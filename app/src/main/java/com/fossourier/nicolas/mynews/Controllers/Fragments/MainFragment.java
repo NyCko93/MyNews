@@ -1,6 +1,6 @@
 package com.fossourier.nicolas.mynews.Controllers.Fragments;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.bumptech.glide.Glide;
+import com.fossourier.nicolas.mynews.Controllers.Activities.MainActivity;
 import com.fossourier.nicolas.mynews.Models.Article;
 import com.fossourier.nicolas.mynews.Models.Result;
 import com.fossourier.nicolas.mynews.R;
@@ -21,12 +23,13 @@ import com.fossourier.nicolas.mynews.Views.ArticleAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 
 /**
@@ -43,7 +46,6 @@ public class MainFragment extends Fragment {
     private static List<Result> listArticles = new ArrayList<>();
     private int mPosition;
 
-
     public MainFragment() {
     }
 
@@ -55,22 +57,19 @@ public class MainFragment extends Fragment {
         return fragment;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, view);
+        this.configureRecyclerView(); // Call during UI creation
         mPosition = getArguments().getInt(POSITION);
-        this.configureRecyclerView(); // - 4 Call during UI creation
-        executeHttpRequestTopStories(); // Request TopStories
-        executeHttpRequestMovieReviews(); // Request MovieReviews
-        executeHttpRequestMostPopular(); // Request MostPopular
+        Log.d(TAG, "onCreateView: " + mPosition);
         executeHttpRequestWithFragmentAccorded (); // Run the http request based on the fragment
         return view;
     }
 
     public void executeHttpRequestTopStories() {
-        NewYorkTimesStreams.streamArticles("science").subscribe(new Observer<Article>() {
+        NewYorkTimesStreams.streamTopStories().subscribe(new Observer<Article>() {
 
             @Override
             public void onSubscribe(Disposable d) {
@@ -80,6 +79,7 @@ public class MainFragment extends Fragment {
             public void onNext(Article article) {
                 listArticles.clear();
                 listArticles.addAll(article.getResult());
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -106,6 +106,7 @@ public class MainFragment extends Fragment {
             public void onNext(Article article) {
                 listArticles.clear();
                 listArticles.addAll(article.getResult());
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -121,8 +122,8 @@ public class MainFragment extends Fragment {
         });
     }
 
-    public void executeHttpRequestMovieReviews() {
-        NewYorkTimesStreams.streamMovieReviews().subscribe(new Observer<Article>() {
+    public void executeHttpRequestBusiness() {
+        NewYorkTimesStreams.streamBusiness().subscribe(new Observer<Article>() {
 
             @Override
             public void onSubscribe(Disposable d) {
@@ -132,6 +133,7 @@ public class MainFragment extends Fragment {
             public void onNext(Article article) {
                 listArticles.clear();
                 listArticles.addAll(article.getResult());
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -147,21 +149,26 @@ public class MainFragment extends Fragment {
         });
     }
 
-    public void executeHttpRequestWithFragmentAccorded (){
+
+
+    private void executeHttpRequestWithFragmentAccorded(){
         switch (mPosition)
         {
             case 0:
                 executeHttpRequestTopStories();
+                Log.e("TAG", "executeHttpRequestWithFragmentAccorded >> topstories");
                 break;
             case 1:
                 executeHttpRequestMostPopular();
+                Log.e("TAG", "executeHttpRequestWithFragmentAccorded >> mostpopular");
                 break;
             case 2:
-                executeHttpRequestMovieReviews();
+                executeHttpRequestBusiness();
+                Log.e("TAG", "executeHttpRequestWithFragmentAccorded >> moviereviews");
                 break;
         }
-
     }
+
 
     private void updateUI() {
         displayArticle();
@@ -172,7 +179,7 @@ public class MainFragment extends Fragment {
     private void configureRecyclerView() {
         // 3.1 - Reset list
         this.listArticles = new ArrayList<>();
-        // 3.2 - Create adapter passing the list of users
+        /* 3.2 - Create adapter passing the list of users */
         this.mAdapter = new ArticleAdapter(this.listArticles, Glide.with(getActivity()));
         // 3.3 - Attach the adapter to the recyclerview to populate items
         this.recyclerView.setAdapter(this.mAdapter);
@@ -195,15 +202,4 @@ public class MainFragment extends Fragment {
     private void disposeWhenDestroy() {
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
     }
-
-    // Display article in WebView
-//    @Override
-//    public void displayArticleInWebView(int position) {
-//
-//        Intent intent = new Intent(getActivity(), ArticleActivity.class);
-//        String url = articlesList.get(position).getUrl();
-//        intent.putExtra("URL", url);
-//        startActivity(intent);
-//    }
-
 }

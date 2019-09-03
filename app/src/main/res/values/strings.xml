@@ -5,8 +5,8 @@
     <string name="tab_text_3">MovieReviews </string>
     <string name="hello_blank_fragment">hello blank fragment</string>
     <string name="refresh">Refresh</string>
-    <string name="Title">Description</string>
+    <string name="content">Content</string>
     <string name="date">Date</string>
-    <string name="Section">Title</string>
-    <string name="Image">Image</string>
+    <string name="section">Section</string>
+    <string name="image">Image</string>
 </resources>
