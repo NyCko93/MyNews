@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ import com.fossourier.nicolas.mynews.Views.ArticleAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,6 +63,7 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, view);
         this.configureRecyclerView(); // Call during UI creation
+        assert getArguments() != null;
         mPosition = getArguments().getInt(POSITION);
         Log.d(TAG, "onCreateView: " + mPosition);
         return view;
@@ -172,7 +175,7 @@ public class MainFragment extends Fragment {
 
 
     private void updateUI(Article article) {
-//        displayArticle();
+        displayArticle();
         listArticles.clear();
         listArticles.addAll(article.getResult());
         mAdapter.notifyDataSetChanged();
@@ -183,7 +186,7 @@ public class MainFragment extends Fragment {
         // 3.1 - Reset list
         this.listArticles = new ArrayList<>();
         /* 3.2 - Create adapter passing the list of users */
-        this.mAdapter = new ArticleAdapter(this.listArticles, Glide.with(getActivity()));
+        this.mAdapter = new ArticleAdapter(this.listArticles, Glide.with(Objects.requireNonNull(getActivity())));
         // 3.3 - Attach the adapter to the recyclerview to populate items
         this.recyclerView.setAdapter(this.mAdapter);
         /* 3.4 - Set layout manager to position the items */
@@ -191,10 +194,10 @@ public class MainFragment extends Fragment {
     }
 
     // Method to manage the display of article
-//    private void displayArticle() {
-//        if (listArticles.size() < 1)
-//            Toast.makeText(getActivity(), "Vous n'avez pas d'article à afficher", Toast.LENGTH_LONG).show();
-//    }
+    private void displayArticle() {
+        if (listArticles.size() < 1)
+            Toast.makeText(getActivity(), "Vous n'avez pas d'article à afficher", Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public void onDestroy() {

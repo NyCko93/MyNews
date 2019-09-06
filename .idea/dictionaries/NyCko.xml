@@ -1,9 +1,27 @@
 <component name="ProjectDictionaryState">
   <dictionary name="NyCko">
     <words>
+      <w>afficher</w>
+      <w>firstname</w>
+      <w>lastname</w>
+      <w>metadatum</w>
+      <w>middlename</w>
+      <w>mostpopular</w>
+      <w>moviereviews</w>
+      <w>multimedium</w>
       <w>rdja</w>
+      <w>realestate</w>
       <w>recyclerview</w>
+      <w>sundayreview</w>
+      <w>thumbnailheight</w>
+      <w>thumbnailwidth</w>
+      <w>tmagazine</w>
       <w>topstories</w>
+      <w>vous</w>
+      <w>wideheight</w>
+      <w>widewidth</w>
+      <w>xlargeheight</w>
+      <w>xlargewidth</w>
     </words>
   </dictionary>
 </component>

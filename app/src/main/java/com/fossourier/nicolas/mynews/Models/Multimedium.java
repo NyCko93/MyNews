@@ -3,6 +3,7 @@ package com.fossourier.nicolas.mynews.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@SuppressWarnings("unused")
 public class Multimedium {
 
     @SerializedName("rank")

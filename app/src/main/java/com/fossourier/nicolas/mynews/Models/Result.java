@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class Result {
 
     public static final String TOPSTORIES_EXTRA = "TOPSTORIES_EXTRA";

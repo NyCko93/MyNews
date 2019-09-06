@@ -13,8 +13,8 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
 
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +30,6 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         tabs.setTabMode(TabLayout.MODE_FIXED);
         viewPager.setAdapter(pagerAdapter);
+
     }
 }

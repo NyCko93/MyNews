@@ -14,12 +14,14 @@ import com.fossourier.nicolas.mynews.Models.Result;
 import com.fossourier.nicolas.mynews.R;
 
 
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 import static androidx.recyclerview.widget.RecyclerView.*;
 
 // For RecyclerView
+@SuppressWarnings("unused")
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
 
     // FOR DATA
@@ -36,6 +38,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
         this.glide = glide;
     }
 
+    @NotNull
     @Override
     public ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // CREATE VIEW HOLDER AND INFLATING ITS XML LAYOUT
@@ -57,5 +60,6 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
     public int getItemCount() {
         return listArticles.size();
     }
+
 }
 

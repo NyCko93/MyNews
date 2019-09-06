@@ -13,6 +13,7 @@ import com.fossourier.nicolas.mynews.Models.Result;
 import com.fossourier.nicolas.mynews.R;
 
 
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -21,6 +22,7 @@ import static com.fossourier.nicolas.mynews.R.drawable.nytimes_default;
 // ----------------------//
 // ITEM OF RECYCLERVIEW  //
 // ----------------------//
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class ArticleViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.fragment_main_item_section) TextView textSection;
@@ -28,8 +30,6 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.fragment_main_item_content) TextView textContent;
     @BindView(R.id.fragment_main_item_image) ImageView imageArticle;
 
-    private TextView title;
-    private TextView articleAbstract;
 
 
 
@@ -40,6 +40,7 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
 
     }
+
     public void updateWithArticles(Result listArticles, RequestManager glide) {
 
         // -----------------//
@@ -54,7 +55,9 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
         // -----------------//
 
         // Display PublishedDate
-        this.textDate.setText(listArticles.getPublishedDate());
+        if (listArticles.getPublishedDate() != null) {
+            this.textDate.setText(listArticles.getPublishedDate().substring(0, 10));
+        }
 
         // ----------------------//
         // SECTION OR SUBSECTION //
@@ -75,12 +78,12 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
             glide.load(listArticles.getMultimedia().get(0).getUrl()).apply(RequestOptions.centerInsideTransform()).into(imageArticle);
         }
         // For image getMedia
-        if (listArticles.getMedia() != null && listArticles.getMedia().size() >= 1) {
+        else if(listArticles.getMedia() != null && listArticles.getMedia().size() >= 1) {
             glide.load(listArticles.getMedia().get(0).getMediaMetadata().get(0).getUrl()).apply(RequestOptions.centerInsideTransform()).into(imageArticle);
         }
-
-//        // For image per Default
-//        imageArticle.setImageResource(nytimes_default);
+        // Default image if no multimedia and no media
+        else{
+            glide.load(nytimes_default).apply(RequestOptions.centerCropTransform()).into(imageArticle);
+        }
     }
-
 }

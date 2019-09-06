@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class Doc {
 
     @SerializedName("web_url")
@@ -13,7 +14,6 @@ public class Doc {
     @SerializedName("snippet")
     @Expose
     private String snippet;
-   //Suppression du model blog qui était vide. voir si souci.
     @SerializedName("source")
     @Expose
     private String source;
