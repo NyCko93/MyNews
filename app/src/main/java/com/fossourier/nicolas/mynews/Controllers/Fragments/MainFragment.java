@@ -1,6 +1,7 @@
 package com.fossourier.nicolas.mynews.Controllers.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.fossourier.nicolas.mynews.Controllers.Activities.WebViewActivity;
 import com.fossourier.nicolas.mynews.Models.Article;
 import com.fossourier.nicolas.mynews.Models.Result;
 import com.fossourier.nicolas.mynews.R;
@@ -23,7 +25,6 @@ import com.fossourier.nicolas.mynews.Views.ArticleAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +37,7 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 /**
  * A placeholder fragment containing a simple view.
  */
+@SuppressWarnings("ConstantConditions")
 public class MainFragment extends Fragment {
 
 
@@ -183,14 +185,19 @@ public class MainFragment extends Fragment {
 
     // Configure RecyclerView, Adapter, LayoutManager & glue it together
     private void configureRecyclerView() {
-        // 3.1 - Reset list
+
         this.listArticles = new ArrayList<>();
-        /* 3.2 - Create adapter passing the list of users */
-        this.mAdapter = new ArticleAdapter(this.listArticles, Glide.with(Objects.requireNonNull(getActivity())));
-        // 3.3 - Attach the adapter to the recyclerview to populate items
+        this.mAdapter = new ArticleAdapter(this.listArticles, Glide.with(getActivity()),this::recyclerViewOnClick);
         this.recyclerView.setAdapter(this.mAdapter);
-        /* 3.4 - Set layout manager to position the items */
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
+    // Start Article Activity when clicked on a RecyclerView item to display it in a WebView
+    public void recyclerViewOnClick(int position) {
+        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+        String url = listArticles.get(position).getUrl();
+        intent.putExtra("URL", url);
+        startActivity(intent);
     }
 
     // Method to manage the display of article

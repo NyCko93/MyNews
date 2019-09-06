@@ -23,6 +23,13 @@ import static androidx.recyclerview.widget.RecyclerView.*;
 // For RecyclerView
 @SuppressWarnings("unused")
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
+    // Interface to configure a listener on RecyclerView items
+    public interface RecyclerViewOnClickListener {
+
+        void recyclerViewOnClick(int position);
+    }
+
+    private final RecyclerViewOnClickListener listener;
 
     // FOR DATA
     private List<Result> listArticles;
@@ -33,9 +40,10 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
     private RequestManager glide;
 
     // CONSTRUCTOR
-    public ArticleAdapter(List<Result> listArticles, RequestManager glide) {
+    public ArticleAdapter(List<Result> listArticles, RequestManager glide, RecyclerViewOnClickListener listener) {
         this.listArticles = listArticles;
         this.glide = glide;
+        this.listener = listener;
     }
 
     @NotNull
@@ -46,7 +54,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.fragment_main_item, parent, false);
 
-        return new ArticleViewHolder(view);
+        return new ArticleViewHolder(view, listener);
     }
 
     // UPDATE VIEW HOLDER WITH ARTICLES

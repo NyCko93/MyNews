@@ -23,7 +23,7 @@ import static com.fossourier.nicolas.mynews.R.drawable.nytimes_default;
 // ITEM OF RECYCLERVIEW  //
 // ----------------------//
 @SuppressWarnings("ResultOfMethodCallIgnored")
-public class ArticleViewHolder extends RecyclerView.ViewHolder {
+public class ArticleViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
 
     @BindView(R.id.fragment_main_item_section) TextView textSection;
     @BindView(R.id.fragment_main_item_date) TextView textDate;
@@ -31,13 +31,16 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.fragment_main_item_image) ImageView imageArticle;
 
 
+    final ArticleAdapter.RecyclerViewOnClickListener recyclerViewOnClickListener;
 
-
-    public ArticleViewHolder(View itemView) {
+    public ArticleViewHolder(View itemView, ArticleAdapter.RecyclerViewOnClickListener listener) {
 
         super(itemView);
 
         ButterKnife.bind(this, itemView);
+
+        this.recyclerViewOnClickListener = listener;
+        itemView.setOnClickListener(this);
 
     }
 
@@ -85,5 +88,13 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
         else{
             glide.load(nytimes_default).apply(RequestOptions.centerCropTransform()).into(imageArticle);
         }
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        recyclerViewOnClickListener.recyclerViewOnClick(getAdapterPosition());
+
     }
 }
