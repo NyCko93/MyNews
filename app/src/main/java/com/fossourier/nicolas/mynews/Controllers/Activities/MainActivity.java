@@ -26,12 +26,9 @@ public class MainActivity extends AppCompatActivity {
         mainFragments.add(MainFragment.newInstance(2) );
         PagerAdapter pagerAdapter = new PagerAdapter(this, mainFragments, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(pagerAdapter);
-//        viewPager.setOffscreenPageLimit(3);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         tabs.setTabMode(TabLayout.MODE_FIXED);
+        viewPager.setAdapter(pagerAdapter);
     }
-
-
 }

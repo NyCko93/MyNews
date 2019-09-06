@@ -6,15 +6,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.bumptech.glide.Glide;
-import com.fossourier.nicolas.mynews.Controllers.Activities.MainActivity;
 import com.fossourier.nicolas.mynews.Models.Article;
 import com.fossourier.nicolas.mynews.Models.Result;
 import com.fossourier.nicolas.mynews.R;
@@ -42,8 +41,8 @@ public class MainFragment extends Fragment {
     @BindView(R.id.fragment_main_recycler_view)
     RecyclerView recyclerView;
     Disposable disposable;
-    static RecyclerView.Adapter<com.fossourier.nicolas.mynews.Views.ArticleViewHolder> mAdapter;
-    private static List<Result> listArticles = new ArrayList<>();
+    RecyclerView.Adapter<com.fossourier.nicolas.mynews.Views.ArticleViewHolder> mAdapter;
+    private List<Result> listArticles = new ArrayList<>();
     private int mPosition;
 
     public MainFragment() {
@@ -64,12 +63,20 @@ public class MainFragment extends Fragment {
         this.configureRecyclerView(); // Call during UI creation
         mPosition = getArguments().getInt(POSITION);
         Log.d(TAG, "onCreateView: " + mPosition);
-        executeHttpRequestWithFragmentAccorded (); // Run the http request based on the fragment
         return view;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        executeHttpRequestWithFragmentAccorded();
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    // Request for TopStories
+    // section == arts, automobiles, books, business, fashion, food, health, home, insider, magazine, movies, national, nyregion, obituaries,
+    // opinion, politics, realestate, science, sports, sundayreview, technology, theater, tmagazine, travel, upshot, world
     public void executeHttpRequestTopStories() {
-        NewYorkTimesStreams.streamTopStories().subscribe(new Observer<Article>() {
+        NewYorkTimesStreams.streamTopStories("science").subscribe(new Observer<Article>() {
 
             @Override
             public void onSubscribe(Disposable d) {
@@ -77,9 +84,7 @@ public class MainFragment extends Fragment {
 
             @Override
             public void onNext(Article article) {
-                listArticles.clear();
-                listArticles.addAll(article.getResult());
-                mAdapter.notifyDataSetChanged();
+                updateUI(article);
             }
 
             @Override
@@ -90,13 +95,14 @@ public class MainFragment extends Fragment {
             @Override
             public void onComplete() {
                 Log.e("TAG", "On Complete !!");
-                updateUI();
             }
         });
     }
 
+    // Request for MostPopular
+    // timePeriodDays == 1, 7 or 30 (days)
     public void executeHttpRequestMostPopular() {
-        NewYorkTimesStreams.streamMostPopular().subscribe(new Observer<Article>() {
+        NewYorkTimesStreams.streamMostPopular("30").subscribe(new Observer<Article>() {
 
             @Override
             public void onSubscribe(Disposable d) {
@@ -104,9 +110,7 @@ public class MainFragment extends Fragment {
 
             @Override
             public void onNext(Article article) {
-                listArticles.clear();
-                listArticles.addAll(article.getResult());
-                mAdapter.notifyDataSetChanged();
+                updateUI(article);
             }
 
             @Override
@@ -117,13 +121,14 @@ public class MainFragment extends Fragment {
             @Override
             public void onComplete() {
                 Log.e("TAG", "On Complete !!");
-                updateUI();
             }
         });
     }
 
+    // Request for Business
+    // Section of TopStories
     public void executeHttpRequestBusiness() {
-        NewYorkTimesStreams.streamBusiness().subscribe(new Observer<Article>() {
+        NewYorkTimesStreams.streamBusiness("business").subscribe(new Observer<Article>() {
 
             @Override
             public void onSubscribe(Disposable d) {
@@ -131,9 +136,7 @@ public class MainFragment extends Fragment {
 
             @Override
             public void onNext(Article article) {
-                listArticles.clear();
-                listArticles.addAll(article.getResult());
-                mAdapter.notifyDataSetChanged();
+                updateUI(article);
             }
 
             @Override
@@ -144,13 +147,11 @@ public class MainFragment extends Fragment {
             @Override
             public void onComplete() {
                 Log.e("TAG", "On Complete !!");
-                updateUI();
             }
         });
     }
 
-
-
+    // Call request in accord with the position of ViewPager
     private void executeHttpRequestWithFragmentAccorded(){
         switch (mPosition)
         {
@@ -170,8 +171,10 @@ public class MainFragment extends Fragment {
     }
 
 
-    private void updateUI() {
-        displayArticle();
+    private void updateUI(Article article) {
+//        displayArticle();
+        listArticles.clear();
+        listArticles.addAll(article.getResult());
         mAdapter.notifyDataSetChanged();
     }
 
@@ -187,11 +190,11 @@ public class MainFragment extends Fragment {
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-    // Method to manage the display of history
-    private void displayArticle() {
-        if (listArticles.size() < 1)
-            Toast.makeText(getActivity(), "Vous n'avez pas d'historique à afficher", Toast.LENGTH_LONG).show();
-    }
+    // Method to manage the display of article
+//    private void displayArticle() {
+//        if (listArticles.size() < 1)
+//            Toast.makeText(getActivity(), "Vous n'avez pas d'article à afficher", Toast.LENGTH_LONG).show();
+//    }
 
     @Override
     public void onDestroy() {

@@ -3,8 +3,6 @@ package com.fossourier.nicolas.mynews.Utils;
 
 import com.fossourier.nicolas.mynews.Models.Article;
 
-
-
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -17,21 +15,18 @@ import retrofit2.http.Path;
 
 public interface NewYorkTimesService {
 
-    //api TopStories
-    @GET("svc/topstories/v2/home.json?api-key=8MIF8xOhLGGy6TRdjaDVBoFg8ptFsAyN")
-    Observable<Article> getArticleTopStories();
+
+    //api Topstories
+    @GET("svc/topstories/v2/{section}.json?api-key=8MIF8xOhLGGy6TRdjaDVBoFg8ptFsAyN")
+    Observable<Article> getArticleTopStories(@Path("section") String section);
 
     //api MostPopular
-    @GET("svc/mostpopular/v2/viewed/1.json?api-key=j44lROnlbMTmVOH5659jL2BvIlXCGbn0")
-    Observable<Article> getArticleMostPopular();
+    @GET("svc/mostpopular/v2/viewed/{period}.json?api-key=j44lROnlbMTmVOH5659jL2BvIlXCGbn0")
+    Observable<Article> getArticleMostPopular(@Path("period") String period);
 
     //api TopStories/business
-    @GET("svc/topstories/v2/business.json?api-key=8MIF8xOhLGGy6TRdjaDVBoFg8ptFsAyN")
-    Observable<Article> getArticleBusiness();
-
-//    //api MovieReviews
-//    @GET("svc/movies/v2/reviews/search.json?query=godfather&api-key=biMS0gHdAmLXykM0YkXUq9eZRixfoUet")
-//    Observable<Article> getArticleMovieReviews();
+    @GET("svc/topstories/v2/{section}.json?api-key=8MIF8xOhLGGy6TRdjaDVBoFg8ptFsAyN")
+    Observable<Article> getArticleBusiness(@Path("section") String section);
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.nytimes.com/")
@@ -41,4 +36,5 @@ public interface NewYorkTimesService {
                     .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                     .build())
             .build();
+
 }

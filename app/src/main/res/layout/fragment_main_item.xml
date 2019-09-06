@@ -54,7 +54,7 @@
                     android:layout_weight="2"
                     android:text="@string/date"
                     android:textColor="@color/colorDate"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <androidx.appcompat.widget.LinearLayoutCompat

@@ -18,7 +18,9 @@ import butterknife.ButterKnife;
 
 import static com.fossourier.nicolas.mynews.R.drawable.nytimes_default;
 
-// For RecyclerView
+// ----------------------//
+// ITEM OF RECYCLERVIEW  //
+// ----------------------//
 public class ArticleViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.fragment_main_item_section) TextView textSection;
@@ -40,11 +42,23 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
     }
     public void updateWithArticles(Result listArticles, RequestManager glide) {
 
+        // -----------------//
+        //     ABSTRACT     //
+        // -----------------//
+
         // Display Abstract
         this.textContent.setText(listArticles.getAbstract());
 
+        // -----------------//
+        //  PUBLISHED DATE  //
+        // -----------------//
+
         // Display PublishedDate
         this.textDate.setText(listArticles.getPublishedDate());
+
+        // ----------------------//
+        // SECTION OR SUBSECTION //
+        // ----------------------//
 
         // Display Section or SubSection if Section == null
         if (listArticles.getSection() == null) listArticles.getSubsection();
@@ -52,20 +66,21 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
             this.textSection.setText(listArticles.getSection());
         }
 
-        // display image per default
-        imageArticle.setImageResource(nytimes_default);
+        // -----------------//
+        //       IMAGE      //
+        // -----------------//
 
-//        // Display image or image per default if no image
-//        if(listArticles.getMultimedia().size() > 1) {
-//            glide.load(listArticles.getMultimedia()).apply(RequestOptions.circleCropTransform()).into(imageArticle);
-//        }
-//        else if (listArticles.getMultimedia().size() < 1){
-//            glide.load(listArticles.getMedia()).apply(RequestOptions.circleCropTransform()).into(imageArticle);
-//        }
-//
-//        else {
-//            imageArticle.setImageResource(nytimes_default);
-//        }
+        // For image getMultimedia
+        if (listArticles.getMultimedia() != null && listArticles.getMultimedia().size() >= 1) {
+            glide.load(listArticles.getMultimedia().get(0).getUrl()).apply(RequestOptions.centerInsideTransform()).into(imageArticle);
+        }
+        // For image getMedia
+        if (listArticles.getMedia() != null && listArticles.getMedia().size() >= 1) {
+            glide.load(listArticles.getMedia().get(0).getMediaMetadata().get(0).getUrl()).apply(RequestOptions.centerInsideTransform()).into(imageArticle);
+        }
+
+//        // For image per Default
+//        imageArticle.setImageResource(nytimes_default);
     }
 
 }
