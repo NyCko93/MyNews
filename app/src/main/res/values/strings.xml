@@ -9,4 +9,35 @@
     <string name="date">Date</string>
     <string name="section">Section</string>
     <string name="image">Image</string>
+    <string name="activity_main_menu_drawer_categories">Categories</string>
+    <string name="arts">Arts</string>
+    <string name="automobiles">Automobiles</string>
+    <string name="books">Books</string>
+    <string name="business">Business</string>
+    <string name="fashion">Fashion</string>
+    <string name="food">Food</string>
+    <string name="health">Health</string>
+    <string name="home">Home</string>
+    <string name="insider">Insider</string>
+    <string name="magazine">Magazine</string>
+    <string name="movies">Movies</string>
+    <string name="national">National</string>
+    <string name="nyregion">NY Region</string>
+    <string name="obituaries">Obituaries</string>
+    <string name="opinion">Opinion</string>
+    <string name="politics">Politics</string>
+    <string name="realestate">Real Estate</string>
+    <string name="science">Science</string>
+    <string name="sports">Sports</string>
+    <string name="sundayreview">Sunday Review</string>
+    <string name="technology">Technology</string>
+    <string name="theater">Theater</string>
+    <string name="tmagazine">T Magazine</string>
+    <string name="travel">Travel</string>
+    <string name="upshot">Up Shot</string>
+    <string name="world">World</string>
+
+    <!-- Used in NavigationDrawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/activity_main_menu_drawer"
+            android:title="@string/activity_main_menu_drawer_categories" />
+    </group>
+
+    <item android:title="@string/section">
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_arts"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/arts" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_automobiles"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/automobiles" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_books"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/books" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_business"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/business" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_fashion"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/fashion" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_food"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/food" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_health"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/health" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_home"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/home" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_insider"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/insider" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_magazine"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/magazine" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_movies"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/movies" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_national"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/national" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_nyregion"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/nyregion" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_obituaries"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/obituaries" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_opinion"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/opinion" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_politics"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/politics" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_realestate"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/realestate" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_science"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/science" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_sports"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/sports" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_sundayreview"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/sundayreview" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_technology"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/technology" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_theater"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/theater" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_tmagazine"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/tmagazine" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_travel"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/travel" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_upshot"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/upshot" />
+                <item
+                    android:id="@+id/activity_main_menu_drawer_section_world"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/world" />
+
+
+            </group>
+        </menu>
+    </item>
+
+</menu>
