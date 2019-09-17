@@ -132,8 +132,8 @@ public class MainFragment extends Fragment {
 
     // Request for Business
     // Section of TopStories
-    public void executeHttpRequestBusiness() {
-        NewYorkTimesStreams.streamBusiness("business").subscribe(new Observer<Article>() {
+    public void executeHttpRequestSection(String section) {
+        NewYorkTimesStreams.streamBusiness(section).subscribe(new Observer<Article>() {
 
             @Override
             public void onSubscribe(Disposable d) {
@@ -169,8 +169,8 @@ public class MainFragment extends Fragment {
                 Log.e("TAG", "executeHttpRequestWithFragmentAccorded >> mostpopular");
                 break;
             case 2:
-                executeHttpRequestBusiness();
-                Log.e("TAG", "executeHttpRequestWithFragmentAccorded >> moviereviews");
+                executeHttpRequestSection("business");
+                Log.e("TAG", "executeHttpRequestWithFragmentAccorded >> business");
                 break;
         }
     }
