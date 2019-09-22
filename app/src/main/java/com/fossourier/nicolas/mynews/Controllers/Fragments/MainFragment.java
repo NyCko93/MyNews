@@ -48,6 +48,7 @@ public class MainFragment extends Fragment {
     RecyclerView.Adapter<com.fossourier.nicolas.mynews.Views.ArticleViewHolder> mAdapter;
     private List<Result> listArticles = new ArrayList<>();
     private int mPosition;
+    private String mSectionChoisen = "Section Choisen";
 
     public MainFragment() {
     }
@@ -81,7 +82,7 @@ public class MainFragment extends Fragment {
     // section == arts, automobiles, books, business, fashion, food, health, home, insider, magazine, movies, national, nyregion, obituaries,
     // opinion, politics, realestate, science, sports, sundayreview, technology, theater, tmagazine, travel, upshot, world
     public void executeHttpRequestTopStories() {
-        NewYorkTimesStreams.streamTopStories("science").subscribe(new Observer<Article>() {
+        NewYorkTimesStreams.streamTopStories("home").subscribe(new Observer<Article>() {
 
             @Override
             public void onSubscribe(Disposable d) {
@@ -100,6 +101,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onComplete() {
                 Log.e("TAG", "On Complete !!");
+                displayArticle();
             }
         });
     }
@@ -107,7 +109,7 @@ public class MainFragment extends Fragment {
     // Request for MostPopular
     // timePeriodDays == 1, 7 or 30 (days)
     public void executeHttpRequestMostPopular() {
-        NewYorkTimesStreams.streamMostPopular("30").subscribe(new Observer<Article>() {
+        NewYorkTimesStreams.streamMostPopular("7").subscribe(new Observer<Article>() {
 
             @Override
             public void onSubscribe(Disposable d) {
@@ -126,14 +128,15 @@ public class MainFragment extends Fragment {
             @Override
             public void onComplete() {
                 Log.e("TAG", "On Complete !!");
+                displayArticle();
             }
         });
     }
 
-    // Request for Business
+    // Request for Section
     // Section of TopStories
-    public void executeHttpRequestSection(String section) {
-        NewYorkTimesStreams.streamBusiness(section).subscribe(new Observer<Article>() {
+    public void executeHttpRequestSection(String sectionChoisen) {
+        NewYorkTimesStreams.streamTopStories(sectionChoisen).subscribe(new Observer<Article>() {
 
             @Override
             public void onSubscribe(Disposable d) {
@@ -152,6 +155,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onComplete() {
                 Log.e("TAG", "On Complete !!");
+                displayArticle();
             }
         });
     }
@@ -170,14 +174,13 @@ public class MainFragment extends Fragment {
                 break;
             case 2:
                 executeHttpRequestSection("business");
-                Log.e("TAG", "executeHttpRequestWithFragmentAccorded >> business");
+                Log.e("TAG", "executeHttpRequestWithFragmentAccorded >> fragment of section choisen");
                 break;
         }
     }
 
 
     private void updateUI(Article article) {
-        displayArticle();
         listArticles.clear();
         listArticles.addAll(article.getResult());
         mAdapter.notifyDataSetChanged();
@@ -214,5 +217,11 @@ public class MainFragment extends Fragment {
 
     private void disposeWhenDestroy() {
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
+    }
+
+    public void updateFragmentSection(String section) {
+        mSectionChoisen = section;
+        executeHttpRequestSection(mSectionChoisen);
+
     }
 }

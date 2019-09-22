@@ -27,11 +27,11 @@ public class NewYorkTimesStreams {
                 .timeout(1000, TimeUnit.SECONDS);
     }
 
-    public static Observable<Article> streamBusiness(String section) {
-        NewYorkTimesService newYorkTimesService = NewYorkTimesService.retrofit.create(NewYorkTimesService.class);
-        return newYorkTimesService.getArticleBusiness(section)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .timeout(1000, TimeUnit.SECONDS);
-    }
+//    public static Observable<Article> streamSection(String section) {
+//        NewYorkTimesService newYorkTimesService = NewYorkTimesService.retrofit.create(NewYorkTimesService.class);
+//        return newYorkTimesService.getArticleSection(section)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .timeout(1000, TimeUnit.SECONDS);
+//    }
 }

@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Title of App-->
     <string name="app_name">My News</string>
+
+    <!-- Title of fragments -->
     <string name="tab_text_1">Top Stories</string>
     <string name="tab_text_2">Most Popular</string>
     <string name="tab_text_3">Business</string>
+
+    <!-- String test for fragment -->
     <string name="hello_blank_fragment">hello blank fragment</string>
     <string name="refresh">Refresh</string>
+
+    <!-- Item of RC -->
     <string name="content">Content</string>
     <string name="date">Date</string>
     <string name="section">Section</string>
     <string name="image">Image</string>
+
+    <!-- Section navigation drawer -->
     <string name="activity_main_menu_drawer_categories">Categories</string>
     <string name="arts">Arts</string>
     <string name="automobiles">Automobiles</string>
@@ -38,7 +48,36 @@
     <string name="upshot">Up Shot</string>
     <string name="world">World</string>
 
+    <!-- Section for fragment business -->
+    <string name="section_arts">arts</string>
+    <string name="section_automobiles">automobiles</string>
+    <string name="section_books">books</string>
+    <string name="section_business">business</string>
+    <string name="section_fashion">fashion</string>
+    <string name="section_food">food</string>
+    <string name="section_health">health</string>
+    <string name="section_home">home</string>
+    <string name="section_insider">insider</string>
+    <string name="section_magazine">magazine</string>
+    <string name="section_movies">movies</string>
+    <string name="section_national">national</string>
+    <string name="section_nyregion">nyregion</string>
+    <string name="section_obituaries">obituaries</string>
+    <string name="section_opinion">opinion</string>
+    <string name="section_politics">politics</string>
+    <string name="section_realestate">realestate</string>
+    <string name="section_science">science</string>
+    <string name="section_sports">sports</string>
+    <string name="section_sundayreview">sundayreview</string>
+    <string name="section_technology">technology</string>
+    <string name="section_theater">theater</string>
+    <string name="section_tmagazine">tmagazine</string>
+    <string name="section_travel">travel</string>
+    <string name="section_upshot">upshot</string>
+    <string name="section_world">world</string>
+
     <!-- Used in NavigationDrawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
 </resources>

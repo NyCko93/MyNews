@@ -25,8 +25,8 @@ public interface NewYorkTimesService {
     Observable<Article> getArticleMostPopular(@Path("period") String period);
 
     //api TopStories/business
-    @GET("svc/topstories/v2/{section}.json?api-key=8MIF8xOhLGGy6TRdjaDVBoFg8ptFsAyN")
-    Observable<Article> getArticleBusiness(@Path("section") String section);
+//    @GET("svc/topstories/v2/{section}.json?api-key=8MIF8xOhLGGy6TRdjaDVBoFg8ptFsAyN")
+//    Observable<Article> getArticleSection(@Path("section") String section);
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.nytimes.com/")

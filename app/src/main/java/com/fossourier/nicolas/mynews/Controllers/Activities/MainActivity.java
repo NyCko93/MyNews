@@ -3,6 +3,7 @@ package com.fossourier.nicolas.mynews.Controllers.Activities;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,6 +19,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private ViewPager viewPager;
+    private TabLayout tabs;
+    private PagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +42,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mainFragments.add(MainFragment.newInstance(1));
         mainFragments.add(MainFragment.newInstance(2));
         PagerAdapter pagerAdapter = new PagerAdapter(this, mainFragments, getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.view_pager);
-        TabLayout tabs = findViewById(R.id.tabs);
+        viewPager = findViewById(R.id.view_pager);
+        tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         tabs.setTabMode(TabLayout.MODE_FIXED);
         viewPager.setAdapter(pagerAdapter);
@@ -62,63 +67,117 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         // 4 - Handle Navigation Item Click
         int id = item.getItemId();
+        item.getTitle();
+        String sectionChoisen;
 
         switch (id) {
             case R.id.activity_main_menu_drawer_section_arts:
+                sectionChoisen = getString(R.string.section_arts);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_automobiles:
+                sectionChoisen = getString(R.string.section_automobiles);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_books:
+                sectionChoisen = getString(R.string.section_books);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_business:
+                sectionChoisen = getString(R.string.section_business);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_fashion:
+                sectionChoisen = getString(R.string.section_fashion);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_food:
+                sectionChoisen = getString(R.string.section_food);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_health:
+                sectionChoisen = getString(R.string.section_health);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_home:
+                sectionChoisen = getString(R.string.section_home);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_insider:
+                sectionChoisen = getString(R.string.section_insider);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_magazine:
+                sectionChoisen = getString(R.string.section_magazine);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_movies:
+                sectionChoisen = getString(R.string.section_movies);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_national:
+                sectionChoisen = getString(R.string.section_national);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_nyregion:
+                sectionChoisen = getString(R.string.section_nyregion);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_obituaries:
+                sectionChoisen = getString(R.string.section_obituaries);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_opinion:
+                sectionChoisen = getString(R.string.section_opinion);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_politics:
+                sectionChoisen = getString(R.string.section_politics);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_realestate:
+                sectionChoisen = getString(R.string.section_realestate);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_science:
+                sectionChoisen = getString(R.string.section_science);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_sports:
+                sectionChoisen = getString(R.string.section_sports);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_sundayreview:
+                sectionChoisen = getString(R.string.section_sundayreview);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_technology:
+                sectionChoisen = getString(R.string.section_technology);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_theater:
+                sectionChoisen = getString(R.string.section_theater);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_tmagazine:
+                sectionChoisen = getString(R.string.section_tmagazine);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_travel:
+                sectionChoisen = getString(R.string.section_travel);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_upshot:
+                sectionChoisen = getString(R.string.section_upshot);
+                displaySectionChoisen(sectionChoisen);
                 break;
             case R.id.activity_main_menu_drawer_section_world:
+                sectionChoisen = getString(R.string.section_world);
+                displaySectionChoisen(sectionChoisen);
                 break;
             default:
                 break;
@@ -127,6 +186,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+    private void displaySectionChoisen(String sectionChoisen){
+        viewPager.setCurrentItem(2);
+        Objects.requireNonNull(tabs.getTabAt(2)).setText(sectionChoisen);
+        ((MainFragment) pagerAdapter.getItem(2)).updateFragmentSection(sectionChoisen);
     }
 
     // ---------------------
