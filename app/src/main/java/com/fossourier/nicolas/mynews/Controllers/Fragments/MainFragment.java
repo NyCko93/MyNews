@@ -21,6 +21,7 @@ import com.fossourier.nicolas.mynews.Models.Article;
 import com.fossourier.nicolas.mynews.Models.Result;
 import com.fossourier.nicolas.mynews.R;
 import com.fossourier.nicolas.mynews.Utils.NewYorkTimesStreams;
+import com.fossourier.nicolas.mynews.Utils.SharedPreferences;
 import com.fossourier.nicolas.mynews.Views.ArticleAdapter;
 
 import java.util.ArrayList;
@@ -49,6 +50,8 @@ public class MainFragment extends Fragment {
     private List<Result> listArticles = new ArrayList<>();
     private int mPosition;
     private String mSectionChoisen = "Section Choisen";
+
+    private SharedPreferences mSharedPreferences;
 
     public MainFragment() {
     }
@@ -135,7 +138,7 @@ public class MainFragment extends Fragment {
 
     // Request for Section
     // Section of TopStories
-    public void executeHttpRequestSection(String sectionChoisen) {
+    public void executeHttpRequestSection(final String sectionChoisen) {
         NewYorkTimesStreams.streamTopStories(sectionChoisen).subscribe(new Observer<Article>() {
 
             @Override
@@ -173,7 +176,9 @@ public class MainFragment extends Fragment {
                 Log.e("TAG", "executeHttpRequestWithFragmentAccorded >> mostpopular");
                 break;
             case 2:
-                executeHttpRequestSection("business");
+                ArrayList<String> listSection = mSharedPreferences.getListSection(0);
+                mSectionChoisen = listSection.get(0);
+                executeHttpRequestSection(mSectionChoisen);
                 Log.e("TAG", "executeHttpRequestWithFragmentAccorded >> fragment of section choisen");
                 break;
         }

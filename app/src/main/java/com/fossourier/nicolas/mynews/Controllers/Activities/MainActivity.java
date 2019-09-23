@@ -14,6 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.fossourier.nicolas.mynews.Controllers.Fragments.MainFragment;
 import com.fossourier.nicolas.mynews.R;
+import com.fossourier.nicolas.mynews.Utils.SharedPreferences;
 import com.fossourier.nicolas.mynews.Views.PagerAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ViewPager viewPager;
     private TabLayout tabs;
     private PagerAdapter pagerAdapter;
+
+    private static SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,6 +195,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         viewPager.setCurrentItem(2);
         Objects.requireNonNull(tabs.getTabAt(2)).setText(sectionChoisen);
         ((MainFragment) pagerAdapter.getItem(2)).updateFragmentSection(sectionChoisen);
+
+        // Here we save the section choisen in class sharedPreferences
+        ArrayList<String> listSection = mSharedPreferences.getListSection(0);
+        if (listSection.size() > 0) {
+            listSection.remove(0);
+        }
+        listSection.add(sectionChoisen);
+        mSharedPreferences.storeListSection(0, listSection);
     }
 
     // ---------------------
