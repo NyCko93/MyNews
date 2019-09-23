@@ -1,17 +1,18 @@
 package com.fossourier.nicolas.mynews.Views;
 
-import android.annotation.SuppressLint;
+
 import android.content.Context;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.fossourier.nicolas.mynews.Controllers.Fragments.MainFragment;
-import com.fossourier.nicolas.mynews.R;
 import com.fossourier.nicolas.mynews.Utils.SharedPreferences;
+
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -21,21 +22,18 @@ import java.util.ArrayList;
  */
 public class PagerAdapter extends FragmentPagerAdapter {
 
-
-//    @StringRes
-//    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3};
-    private final Context mContext;
     private final ArrayList<MainFragment> mMainFragments;
 
-    private static SharedPreferences mSharedPreferences;
+    private SharedPreferences mSharedPreferences;
 
     public PagerAdapter(Context context, ArrayList<MainFragment> mainFragments, FragmentManager fm) {
         super(fm);
         mMainFragments = mainFragments;
-        mContext = context;
         mSharedPreferences = SharedPreferences.getInstance(context);
     }
 
+
+    @NotNull
     @Override
     public Fragment getItem(int position) {
         switch (position) {
@@ -63,7 +61,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
                 if (listSection != null && listSection.size() > 0) {
                     return listSection.get(0);
                 } else {
-                    return "Business";
+                    return "No section choisen";
                 }
             default:
                 return null;

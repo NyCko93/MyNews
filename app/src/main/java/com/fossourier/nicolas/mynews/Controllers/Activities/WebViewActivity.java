@@ -6,6 +6,7 @@ import com.fossourier.nicolas.mynews.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+// Webview for display the article clicked
 public class WebViewActivity extends AppCompatActivity {
 
     @BindView(R.id.web_view_activity)

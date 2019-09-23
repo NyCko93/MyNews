@@ -48,7 +48,7 @@
     <string name="world">World</string>
 
     <!-- Section for fragment business -->
-    <string name="section_arts">Arts</string>
+    <string name="section_arts">arts</string>
     <string name="section_automobiles">automobiles</string>
     <string name="section_books">books</string>
     <string name="section_business">business</string>

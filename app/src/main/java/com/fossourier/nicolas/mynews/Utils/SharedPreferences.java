@@ -16,13 +16,13 @@ public class SharedPreferences {
 
     private SharedPreferences(Context context) {
         String PREFS="PREFS";
-        prefs=context.getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
+        prefs = context.getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
     }
 
     // Initialization of the backup. If no backup, we create one
     public static SharedPreferences getInstance(Context context) {
         if (instance == null)
-            instance=new SharedPreferences(context);
+            instance = new SharedPreferences(context);
         return instance;
     }
 

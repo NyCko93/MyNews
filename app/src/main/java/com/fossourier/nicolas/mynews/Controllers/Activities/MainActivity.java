@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mainFragments.add(MainFragment.newInstance(0));
         mainFragments.add(MainFragment.newInstance(1));
         mainFragments.add(MainFragment.newInstance(2));
-        PagerAdapter pagerAdapter = new PagerAdapter(this, mainFragments, getSupportFragmentManager());
+        pagerAdapter = new PagerAdapter(this, mainFragments, getSupportFragmentManager());
         viewPager = findViewById(R.id.view_pager);
         tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
@@ -55,12 +55,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         configureDrawerLayout();
         configureNavigationView();
 
+        mSharedPreferences = SharedPreferences.getInstance(this);
+
 
     }
 
     @Override
     public void onBackPressed() {
-        // 5 - Handle back click to close menu
+        // Handle back click to close menu
         if (this.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             this.drawerLayout.closeDrawer(GravityCompat.START);
         } else {
@@ -69,10 +71,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+    // Item of my section's menu
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        // 4 - Handle Navigation Item Click
+        // Handle Navigation Item Click
         int id = item.getItemId();
         item.getTitle();
         String sectionChoisen;
@@ -191,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    // Display the section choisen in fragment and refresh title with the name of section choisen
     private void displaySectionChoisen(String sectionChoisen){
         viewPager.setCurrentItem(2);
         Objects.requireNonNull(tabs.getTabAt(2)).setText(sectionChoisen);
@@ -209,13 +213,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // CONFIGURATION
     // ---------------------
 
-    // 1 - Configure Toolbar
+    // Configure Toolbar
     private void configureToolBar() {
         this.toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
         setSupportActionBar(toolbar);
     }
 
-    // 2 - Configure Drawer Layout
+    // Configure Drawer Layout
     private void configureDrawerLayout() {
         this.drawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -223,13 +227,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
     }
 
-    // 3 - Configure NavigationView
+    // Configure NavigationView
     private void configureNavigationView() {
         this.navigationView = (NavigationView) findViewById(R.id.activity_main_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    // 3 - Generic method that will replace and show a fragment inside the MainActivity Frame Layout
+    // Generic method that will replace and show a fragment inside the MainActivity Frame Layout
     private void startTransactionFragment(Fragment fragment){
         if (!fragment.isVisible()){
             getSupportFragmentManager().beginTransaction()

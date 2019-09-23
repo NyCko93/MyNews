@@ -1,6 +1,8 @@
 package com.fossourier.nicolas.mynews.Controllers.Fragments;
 
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +28,8 @@ import com.fossourier.nicolas.mynews.Utils.NewYorkTimesStreams;
 import com.fossourier.nicolas.mynews.Utils.SharedPreferences;
 import com.fossourier.nicolas.mynews.Views.ArticleAdapter;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +41,6 @@ import io.reactivex.disposables.Disposable;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 
-/**
- * A placeholder fragment containing a simple view.
- */
 @SuppressWarnings("ConstantConditions")
 public class MainFragment extends Fragment {
 
@@ -57,6 +58,12 @@ public class MainFragment extends Fragment {
     TextView textView;
 
     public MainFragment() {
+    }
+
+    @Override
+    public void onAttach(@NotNull Context context) {
+        super.onAttach(context);
+        mSharedPreferences = SharedPreferences.getInstance(context);
     }
 
     public static MainFragment newInstance(int position) {
@@ -167,6 +174,8 @@ public class MainFragment extends Fragment {
     }
 
     // Call request in accord with the position of ViewPager
+    // First we check the internet connectivity
+    // If it is good, we call the request otherwise we display a message to say that the connection does not work
     private void executeHttpRequestWithFragmentAccorded(){
         switch (mPosition)
         {
@@ -183,15 +192,21 @@ public class MainFragment extends Fragment {
             }break;
             case 2: if (Connectivity.networkInfo(getActivity())){
                 ArrayList<String> listSection = mSharedPreferences.getListSection(0);
-                mSectionChoisen = listSection.get(0);
-                executeHttpRequestSection(mSectionChoisen);
-                Log.e("TAG", "executeHttpRequestWithFragmentAccorded >> fragment of section choisen");
+                if (listSection.size() < 1) {
+                    executeHttpRequestSection("business");
+                } else {
+                    mSectionChoisen = listSection.get(0);
+                    executeHttpRequestSection(mSectionChoisen);
+                    Log.e("TAG", "executeHttpRequestWithFragmentAccorded >> fragment of section choisen");
+                }
             } else {
                 internetDoesNotWork();
             }break;
         }
     }
 
+    // Here we display a message to say that the connection does not work
+    @SuppressLint("SetTextI18n")
     private void internetDoesNotWork() {
         textView.setVisibility(View.VISIBLE);
         textView.setText("Internet does not work");
