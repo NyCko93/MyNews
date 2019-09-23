@@ -26,6 +26,7 @@ public class SharedPreferences {
         return instance;
     }
 
+    // Store the section choisen in case 0 and the section searched in case 1
     public void storeListSection(int i, ArrayList<String> listSection) {
         String prefSection = "SECTIONCHOISEN";
         switch (i) {
@@ -49,7 +50,7 @@ public class SharedPreferences {
 
     }
 
-    // Here we recover the saved data. If null, create a new list
+    // Here we recover the saved data. The section choisen in case 0 and the section searched in case 1
     public ArrayList<String> getListSection(int i) {
         String sectionSaved = "SECTIONCHOISEN";
         switch (i) {

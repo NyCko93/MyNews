@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.fossourier.nicolas.mynews.Controllers.Activities.WebViewActivity;
 import com.fossourier.nicolas.mynews.Models.Article;
 import com.fossourier.nicolas.mynews.Models.Result;
 import com.fossourier.nicolas.mynews.R;
+import com.fossourier.nicolas.mynews.Utils.Connectivity;
 import com.fossourier.nicolas.mynews.Utils.NewYorkTimesStreams;
 import com.fossourier.nicolas.mynews.Utils.SharedPreferences;
 import com.fossourier.nicolas.mynews.Views.ArticleAdapter;
@@ -52,6 +54,7 @@ public class MainFragment extends Fragment {
     private String mSectionChoisen = "Section Choisen";
 
     private SharedPreferences mSharedPreferences;
+    TextView textView;
 
     public MainFragment() {
     }
@@ -167,21 +170,31 @@ public class MainFragment extends Fragment {
     private void executeHttpRequestWithFragmentAccorded(){
         switch (mPosition)
         {
-            case 0:
+            case 0: if (Connectivity.networkInfo(getActivity())){
                 executeHttpRequestTopStories();
                 Log.e("TAG", "executeHttpRequestWithFragmentAccorded >> topstories");
-                break;
-            case 1:
+            } else {
+                internetDoesNotWork();
+            }break;
+            case 1: if (Connectivity.networkInfo(getActivity())){
                 executeHttpRequestMostPopular();
-                Log.e("TAG", "executeHttpRequestWithFragmentAccorded >> mostpopular");
-                break;
-            case 2:
+                Log.e("TAG", "executeHttpRequestWithFragmentAccorded >> mostpopular");} else {
+                internetDoesNotWork();
+            }break;
+            case 2: if (Connectivity.networkInfo(getActivity())){
                 ArrayList<String> listSection = mSharedPreferences.getListSection(0);
                 mSectionChoisen = listSection.get(0);
                 executeHttpRequestSection(mSectionChoisen);
                 Log.e("TAG", "executeHttpRequestWithFragmentAccorded >> fragment of section choisen");
-                break;
+            } else {
+                internetDoesNotWork();
+            }break;
         }
+    }
+
+    private void internetDoesNotWork() {
+        textView.setVisibility(View.VISIBLE);
+        textView.setText("Internet does not work");
     }
 
 
