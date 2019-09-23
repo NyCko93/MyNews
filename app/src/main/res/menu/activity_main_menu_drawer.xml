@@ -7,6 +7,19 @@
         <item
             android:id="@+id/activity_main_menu_drawer"
             android:title="@string/activity_main_menu_drawer_categories" />
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/category_top_stories"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/categorie_top_stories" />
+                <item
+                    android:id="@+id/category_most_popular"
+                    android:icon="@drawable/baseline_arrow_right_alt_black_24dp"
+                    android:title="@string/categorie_most_popular" />
+            </group>
+        </menu>
     </group>
 
     <item android:title="@string/section">

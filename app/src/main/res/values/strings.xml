@@ -20,6 +20,8 @@
 
     <!-- Section navigation drawer -->
     <string name="activity_main_menu_drawer_categories">Categories</string>
+    <string name="categorie_top_stories">TOP STORIES</string>
+    <string name="categorie_most_popular">MOST POPULAR</string>
     <string name="arts">Arts</string>
     <string name="automobiles">Automobiles</string>
     <string name="books">Books</string>

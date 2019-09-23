@@ -36,6 +36,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private static SharedPreferences mSharedPreferences;
 
+    // ID of fragment for drawer
+    public static final int TOP_STORIES = 0;
+    public static final int  MOST_POPULAR = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +85,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String sectionChoisen;
 
         switch (id) {
+            case R.id.category_top_stories:
+                this.displayFragment(TOP_STORIES);
+            break;
+            case R.id.category_most_popular:
+                this.displayFragment(MOST_POPULAR);
+                break;
             case R.id.activity_main_menu_drawer_section_arts:
                 sectionChoisen = getString(R.string.section_arts);
                 displaySectionChoisen(sectionChoisen);
@@ -238,6 +248,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (!fragment.isVisible()){
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.activity_main_frame_layout, fragment).commit();
+        }
+    }
+
+    // Item of my drawer, for display the fragment according
+    private void displayFragment(int id){
+        switch(id){
+            case TOP_STORIES:
+                viewPager.setCurrentItem(TOP_STORIES);
+                navigationView.setCheckedItem(R.id.category_top_stories);
+                break;
+            case MOST_POPULAR:
+                viewPager.setCurrentItem(MOST_POPULAR);
+                navigationView.setCheckedItem(R.id.category_most_popular);
+                break;
         }
     }
 }
