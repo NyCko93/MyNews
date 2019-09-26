@@ -1,6 +1,7 @@
 package com.fossourier.nicolas.mynews.Controllers.Activities;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -62,6 +63,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mSharedPreferences = SharedPreferences.getInstance(this);
 
 
+    }
+
+    // Inflate the menu with search, notifications, help and about and add on the toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main_menu, menu);
+        return true;
     }
 
     @Override
