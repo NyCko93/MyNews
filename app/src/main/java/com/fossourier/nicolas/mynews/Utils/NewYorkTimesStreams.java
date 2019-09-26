@@ -2,6 +2,7 @@ package com.fossourier.nicolas.mynews.Utils;
 
 import com.fossourier.nicolas.mynews.Models.Article;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -27,11 +28,12 @@ public class NewYorkTimesStreams {
                 .timeout(1000, TimeUnit.SECONDS);
     }
 
-//    public static Observable<Article> streamSection(String section) {
-//        NewYorkTimesService newYorkTimesService = NewYorkTimesService.retrofit.create(NewYorkTimesService.class);
-//        return newYorkTimesService.getArticleSection(section)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .timeout(1000, TimeUnit.SECONDS);
-//    }
+    public static Observable<Article> streamArticleSearch
+            (String search, List<String> listSection, String beginDate, String endDate) {
+        NewYorkTimesService newYorkTimesService = NewYorkTimesService.retrofit.create(NewYorkTimesService.class);
+        return newYorkTimesService.getArticleSearch(search, listSection, beginDate, endDate)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(1000, TimeUnit.SECONDS);
+    }
 }
