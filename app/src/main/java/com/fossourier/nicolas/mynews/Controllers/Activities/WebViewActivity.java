@@ -20,3 +20,5 @@ public class WebViewActivity extends AppCompatActivity {
         webView.loadUrl(getIntent().getStringExtra("URL"));
     }
 }
+
+

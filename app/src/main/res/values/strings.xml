@@ -80,10 +80,23 @@
     <!-- Used in NavigationDrawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Used in Option's Menu -->
     <string name="notifications">Notifications</string>
     <string name="menu_options">Menu Options</string>
     <string name="about">About</string>
     <string name="help">Help</string>
     <string name="search">Search</string>
+
+
+    <!-- Used in NotiSearch -->
+    <string name="begin_date">BEGIN DATE</string>
+    <string name="end_date">END DATE</string>
+    <string name="notification_time">Notification time</string>
+    <string name="hint_search">Search query term</string>
+    <string name="noti_search_date">dd/mm/yyyy</string>
+    <string name="enable_notifications">ENABLE  NOTIFICATIONS</string>
+    <string name="search_fields">SEARCH</string>
+    <string name="boolean_notisearch" />
 
 </resources>

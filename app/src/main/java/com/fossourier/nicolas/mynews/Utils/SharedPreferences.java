@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SharedPreferences {
 
@@ -77,5 +78,10 @@ public class SharedPreferences {
         }
         return listSection;
 
+    }
+
+    // Save section choisen in checkbox for notification
+    public List<String> getCheckBoxSection() {
+        return null;
     }
 }

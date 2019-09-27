@@ -7,4 +7,6 @@
     <dimen name="appbar_padding_top">8dp</dimen>
     <!-- Default NavigationView Header height -->
     <dimen name="nav_header_height">176dp</dimen>
+    <!-- checkbox -->
+    <dimen name="word_size_checkbox">15sp</dimen>
 </resources>

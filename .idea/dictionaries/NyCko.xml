@@ -2,6 +2,8 @@
   <dictionary name="NyCko">
     <words>
       <w>afficher</w>
+      <w>articlesearch</w>
+      <w>autofill</w>
       <w>categorie</w>
       <w>choisen</w>
       <w>firstname</w>
@@ -11,6 +13,9 @@
       <w>mostpopular</w>
       <w>moviereviews</w>
       <w>multimedium</w>
+      <w>noti</w>
+      <w>notif</w>
+      <w>notisearch</w>
       <w>nyregion</w>
       <w>onlb</w>
       <w>rdja</w>

@@ -6,5 +6,7 @@
     <color name="colorContent">#606060</color>
     <color name="colorDate">#393939</color>
     <color name="colorSection">#000000</color>
+    <color name="colorBackgroundCase">#D3D3D3</color>
+    <color name="colorCursor">#808080</color>
 
 </resources>
