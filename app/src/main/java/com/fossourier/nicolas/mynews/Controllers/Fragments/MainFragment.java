@@ -44,7 +44,6 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 @SuppressWarnings("ConstantConditions")
 public class MainFragment extends Fragment {
 
-
     private static final String POSITION = "POSITION";
     @BindView(R.id.fragment_main_recycler_view)
     RecyclerView recyclerView;
@@ -53,7 +52,6 @@ public class MainFragment extends Fragment {
     private List<Result> listArticles = new ArrayList<>();
     private int mPosition;
     private String mSectionChoisen = "Section Choisen";
-
     private SharedPreferences mSharedPreferences;
     TextView textView;
 
@@ -90,10 +88,11 @@ public class MainFragment extends Fragment {
         executeHttpRequestWithFragmentAccorded();
         super.onViewCreated(view, savedInstanceState);
     }
-
-    // Request for TopStories
-    // section == arts, automobiles, books, business, fashion, food, health, home, insider, magazine, movies, national, nyregion, obituaries,
-    // opinion, politics, realestate, science, sports, sundayreview, technology, theater, tmagazine, travel, upshot, world
+        //-----------------------------------------------------------------------------------------------------------------------------------------//
+       // Request for TopStories                                                                                                                  //
+      //  section == arts, automobiles, books, business, fashion, food, health, home, insider, magazine, movies, national, nyregion, obituaries, //
+     //   opinion, politics, realestate, science, sports, sundayreview, technology, theater, tmagazine, travel, upshot, world                   //
+    //-----------------------------------------------------------------------------------------------------------------------------------------//
     public void executeHttpRequestTopStories() {
         NewYorkTimesStreams.streamTopStories("home").subscribe(new Observer<Article>() {
 
@@ -119,8 +118,10 @@ public class MainFragment extends Fragment {
         });
     }
 
-    // Request for MostPopular
-    // timePeriodDays == 1, 7 or 30 (days)
+       //-----------------------------------------//
+      // Request for MostPopular                 //
+     // timePeriodDays == 1, 7 or 30 (days)     //
+    //-----------------------------------------//
     public void executeHttpRequestMostPopular() {
         NewYorkTimesStreams.streamMostPopular("7").subscribe(new Observer<Article>() {
 
@@ -146,8 +147,10 @@ public class MainFragment extends Fragment {
         });
     }
 
-    // Request for Section
-    // Section of TopStories
+       //-----------------------//
+      // Request for Section   //
+     // Section of TopStories //
+    //-----------------------//
     public void executeHttpRequestSection(final String sectionChoisen) {
         NewYorkTimesStreams.streamTopStories(sectionChoisen).subscribe(new Observer<Article>() {
 
@@ -173,9 +176,11 @@ public class MainFragment extends Fragment {
         });
     }
 
-    // Call request in accord with the position of ViewPager
-    // First we check the internet connectivity
-    // If it is good, we call the request otherwise we display a message to say that the connection does not work
+        //------------------------------------------------------------------------------------------------------------//
+       // Call request in accord with the position of ViewPager                                                      //
+      // First we check the internet connectivity                                                                   //
+     // If it is good, we call the request otherwise we display a message to say that the connection does not work //
+    //------------------------------------------------------------------------------------------------------------//
     private void executeHttpRequestWithFragmentAccorded(){
         switch (mPosition)
         {
@@ -205,13 +210,14 @@ public class MainFragment extends Fragment {
         }
     }
 
-    // Here we display a message to say that the connection does not work
+      //--------------------------------------------------------------------//
+     // Here we display a message to say that the connection does not work //
+    //--------------------------------------------------------------------//
     @SuppressLint("SetTextI18n")
     private void internetDoesNotWork() {
         textView.setVisibility(View.VISIBLE);
         textView.setText("Internet does not work");
     }
-
 
     private void updateUI(Article article) {
         listArticles.clear();
@@ -219,7 +225,9 @@ public class MainFragment extends Fragment {
         mAdapter.notifyDataSetChanged();
     }
 
-    // Configure RecyclerView, Adapter, LayoutManager & glue it together
+      //------------------------//
+     // Configure RecyclerView //
+    //------------------------//
     private void configureRecyclerView() {
 
         this.listArticles = new ArrayList<>();
@@ -228,7 +236,9 @@ public class MainFragment extends Fragment {
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-    // Start Article Activity when clicked on a RecyclerView item to display it in a WebView
+      //---------------------------------------------------------------------------------------//
+     // Start Article Activity when clicked on a RecyclerView item to display it in a WebView //
+    //---------------------------------------------------------------------------------------//
     public void recyclerViewOnClick(int position) {
         Intent intent = new Intent(getActivity(), WebViewActivity.class);
         String url = listArticles.get(position).getUrl();
@@ -236,7 +246,9 @@ public class MainFragment extends Fragment {
         startActivity(intent);
     }
 
-    // Method to manage the display of article
+      //------------------------------------------//
+     // Method for display a toast when size < 1 //
+    //------------------------------------------//
     private void displayArticle() {
         if (listArticles.size() < 1)
             Toast.makeText(getActivity(), "Vous n'avez pas d'article à afficher", Toast.LENGTH_LONG).show();
@@ -252,6 +264,9 @@ public class MainFragment extends Fragment {
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
     }
 
+      //-----------------------------------------------------------//
+     // Method for update the fragment 2 with the section choisen //
+    //-----------------------------------------------------------//
     public void updateFragmentSection(String section) {
         mSectionChoisen = section;
         executeHttpRequestSection(mSectionChoisen);

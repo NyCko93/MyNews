@@ -5,8 +5,13 @@
       <w>articlesearch</w>
       <w>autofill</w>
       <w>categorie</w>
+      <w>chekbox</w>
       <w>choisen</w>
+      <w>desactivate</w>
       <w>firstname</w>
+      <w>getm</w>
+      <w>gotno</w>
+      <w>jjrewi</w>
       <w>lastname</w>
       <w>metadatum</w>
       <w>middlename</w>
@@ -15,14 +20,18 @@
       <w>multimedium</w>
       <w>noti</w>
       <w>notif</w>
+      <w>notificationsenable</w>
       <w>notisearch</w>
       <w>nyregion</w>
       <w>onlb</w>
+      <w>querytermnotifications</w>
       <w>rdja</w>
       <w>realestate</w>
       <w>recyclerview</w>
       <w>sectionchoisen</w>
+      <w>sectionofnotifications</w>
       <w>sectionsearched</w>
+      <w>setm</w>
       <w>sundayreview</w>
       <w>thumbnailheight</w>
       <w>thumbnailwidth</w>

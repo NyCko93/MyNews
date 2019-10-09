@@ -23,7 +23,6 @@ import java.util.ArrayList;
 public class PagerAdapter extends FragmentPagerAdapter {
 
     private final ArrayList<MainFragment> mMainFragments;
-
     private SharedPreferences mSharedPreferences;
 
     public PagerAdapter(Context context, ArrayList<MainFragment> mainFragments, FragmentManager fm) {
@@ -31,7 +30,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
         mMainFragments = mainFragments;
         mSharedPreferences = SharedPreferences.getInstance(context);
     }
-
 
     @NotNull
     @Override

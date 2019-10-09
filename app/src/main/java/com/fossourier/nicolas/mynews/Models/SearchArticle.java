@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+
 @SuppressWarnings("unused")
 public class SearchArticle implements Parcelable {
 
@@ -73,4 +74,5 @@ public class SearchArticle implements Parcelable {
         dest.writeString(status);
         dest.writeString(copyright);
     }
+
 }

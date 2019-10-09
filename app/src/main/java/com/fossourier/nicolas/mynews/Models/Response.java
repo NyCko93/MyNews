@@ -3,7 +3,9 @@ package com.fossourier.nicolas.mynews.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings("unused")
 public class Response {
@@ -14,6 +16,10 @@ public class Response {
     @SerializedName("meta")
     @Expose
     private Meta meta;
+
+//    public Collection<? extends Doc> getDocs() {
+//        return docs;
+//    }
 
     public List<Doc> getDocs() {
         return docs;
@@ -30,5 +36,4 @@ public class Response {
     public void setMeta(Meta meta) {
         this.meta = meta;
     }
-
 }

@@ -1,5 +1,6 @@
 package com.fossourier.nicolas.mynews.Controllers.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.fossourier.nicolas.mynews.Controllers.Fragments.MainFragment;
+import com.fossourier.nicolas.mynews.Models.Result;
 import com.fossourier.nicolas.mynews.R;
 import com.fossourier.nicolas.mynews.Utils.SharedPreferences;
 import com.fossourier.nicolas.mynews.Views.PagerAdapter;
@@ -23,21 +25,18 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import static com.fossourier.nicolas.mynews.Models.Result.TOPSTORIES_EXTRA;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
-    //FOR DESIGN
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ViewPager viewPager;
     private TabLayout tabs;
     private PagerAdapter pagerAdapter;
-
     private static SharedPreferences mSharedPreferences;
-
-    // ID of fragment for drawer
     public static final int TOP_STORIES = 0;
     public static final int  MOST_POPULAR = 1;
 
@@ -55,17 +54,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tabs.setupWithViewPager(viewPager);
         tabs.setTabMode(TabLayout.MODE_FIXED);
         viewPager.setAdapter(pagerAdapter);
-
         configureToolBar();
         configureDrawerLayout();
         configureNavigationView();
-
         mSharedPreferences = SharedPreferences.getInstance(this);
-
-
     }
 
-    // Inflate the menu with search, notifications, help and about and add on the toolbar
+      //------------------------------------------------------------------------------------//
+     // Inflate the menu with search, notifications, help and about and add on the toolbar //
+    //------------------------------------------------------------------------------------//
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main_menu, menu);
@@ -82,8 +79,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-
-    // Item of my section's menu
+      //--------------------------------------------------------------//
+     // CONFIGURATION Item of my section's menu in navigation drawer //
+    //--------------------------------------------------------------//
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -212,7 +210,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    // Display the section choisen in fragment and refresh title with the name of section choisen
+      //--------------------------------------------------------------------------------------------//
+     // Display the section choisen in fragment and refresh title with the name of section choisen //
+    //--------------------------------------------------------------------------------------------//
     private void displaySectionChoisen(String sectionChoisen){
         viewPager.setCurrentItem(2);
         Objects.requireNonNull(tabs.getTabAt(2)).setText(sectionChoisen);
@@ -227,31 +227,61 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mSharedPreferences.storeListSection(0, listSection);
     }
 
-    // ---------------------
-    // CONFIGURATION
-    // ---------------------
+      //---------------------------------------------------------------//
+     // Configure the switch for the different item's option selected //
+    //---------------------------------------------------------------//
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Starting corresponding activity once clicked on items
+        switch (item.getItemId()) {
+            case R.id.menu_options:
+                return true;
+            case R.id.item_notifications:
+                Intent notificationIntent = new Intent(MainActivity.this,
+                        NotiSearchActivity.class);
+                notificationIntent.putExtra(getString(R.string.boolean_notisearch), false);
+                startActivity(notificationIntent);
+                return true;
+            case R.id.item_search:
+                Intent searchActivityIntent = new Intent(MainActivity.this,
+                        NotiSearchActivity.class);
+                searchActivityIntent.putExtra(getString(R.string.boolean_notisearch), true);
+                startActivity(searchActivityIntent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
-    // Configure Toolbar
+      //-------------------//
+     // Configure Toolbar //
+    //-------------------//
     private void configureToolBar() {
-        this.toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
+        this.toolbar = findViewById(R.id.activity_main_toolbar);
         setSupportActionBar(toolbar);
     }
 
-    // Configure Drawer Layout
+      //-------------------------//
+     // Configure Drawer Layout //
+    //-------------------------//
     private void configureDrawerLayout() {
-        this.drawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer_layout);
+        this.drawerLayout = findViewById(R.id.activity_main_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
     }
 
-    // Configure NavigationView
+      //--------------------------//
+     // Configure NavigationView //
+    //--------------------------//
     private void configureNavigationView() {
-        this.navigationView = (NavigationView) findViewById(R.id.activity_main_nav_view);
+        this.navigationView = findViewById(R.id.activity_main_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    // Generic method that will replace and show a fragment inside the MainActivity Frame Layout
+      //------------------------------------------------------------------//
+     // Method for display the fragment in the MainActivity Frame Layout //
+    //------------------------------------------------------------------//
     private void startTransactionFragment(Fragment fragment){
         if (!fragment.isVisible()){
             getSupportFragmentManager().beginTransaction()
@@ -259,7 +289,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    // Item of my drawer, for display the fragment according
+      //-------------------------------------------------------//
+     // Item of my drawer, for display the fragment according //
+    //-------------------------------------------------------//
     private void displayFragment(int id){
         switch(id){
             case TOP_STORIES:
@@ -271,5 +303,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 navigationView.setCheckedItem(R.id.category_most_popular);
                 break;
         }
+    }
+
+      //-----------------------//
+     // PageFragment callback //
+    //-----------------------//
+    public void callbackArticle(Result article) {
+        startWebViewActivity(article);
+    }
+
+    private void startWebViewActivity(Result article) {
+        Intent webViewActivityIntent = new Intent(MainActivity.this,
+                WebViewActivity.class);
+        webViewActivityIntent.putExtra(TOPSTORIES_EXTRA, article.getUrl());
+        startActivity(webViewActivityIntent);
     }
 }

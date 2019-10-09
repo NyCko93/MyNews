@@ -23,6 +23,7 @@ import static androidx.recyclerview.widget.RecyclerView.*;
 // For RecyclerView
 @SuppressWarnings("unused")
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
+
     // Interface to configure a listener on RecyclerView items
     public interface RecyclerViewOnClickListener {
 
@@ -30,16 +31,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
     }
 
     private final RecyclerViewOnClickListener listener;
-
-    // FOR DATA
     private List<Result> listArticles;
     private ViewHolder viewHolder;
     private int position;
     public TextView textView;
-    // 1 - Declaring a Glide object
     private RequestManager glide;
 
-    // CONSTRUCTOR
     public ArticleAdapter(List<Result> listArticles, RequestManager glide, RecyclerViewOnClickListener listener) {
         this.listArticles = listArticles;
         this.glide = glide;
@@ -49,25 +46,26 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
     @NotNull
     @Override
     public ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // CREATE VIEW HOLDER AND INFLATING ITS XML LAYOUT
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.fragment_main_item, parent, false);
-
         return new ArticleViewHolder(view, listener);
     }
 
-    // UPDATE VIEW HOLDER WITH ARTICLES
+      // ---------------------------------//
+     // UPDATE VIEW HOLDER WITH ARTICLES //
+    // ---------------------------------//
     @Override
     public void onBindViewHolder(ArticleViewHolder viewHolder, int position) {
         viewHolder.updateWithArticles(this.listArticles.get(position), this.glide);
     }
 
-    // RETURN THE TOTAL COUNT OF ITEMS IN THE LIST
+      // --------------------------------------------//
+     // RETURN THE TOTAL COUNT OF ITEMS IN THE LIST //
+    // --------------------------------------------//
     @Override
     public int getItemCount() {
         return listArticles.size();
     }
-
 }
 

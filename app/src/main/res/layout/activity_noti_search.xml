@@ -1,19 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background_notisearch"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controllers.Activities.NotiSearchActivity">
+    android:background="@drawable/background_notisearch"
+    tools:context=".Controllers.Activities.NotiSearchActivity"
+    tools:ignore="UselessParent">
 
-    <!-- Toolbar -->
+    <!-- TOOLBAR -->
     <include
-        layout="@layout/toolbar_noti_search"
+        layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- Edit Text for search -->
+
+
+    <!-- CHECKBOX ARTS -->
+    <CheckBox
+        android:id="@+id/section_arts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/edit_text_search"
+        android:layout_alignTop="@+id/edit_text_search"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="150dp"
+        android:text="@string/section_arts"
+        android:textColor="@color/colorSection"
+        android:textSize="@dimen/word_size_checkbox"
+        android:theme="@style/cbStyle"
+        tools:ignore="RelativeOverlap" />
+
+    <!-- CHECKBOX AUTOMOBILES -->
+    <CheckBox
+        android:id="@+id/section_automobiles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/section_arts"
+        android:layout_alignTop="@+id/section_arts"
+        android:layout_marginTop="45dp"
+        android:text="@string/section_automobiles"
+        android:textColor="@color/colorSection"
+        android:textSize="@dimen/word_size_checkbox"
+        android:theme="@style/cbStyle"
+        tools:ignore="RelativeOverlap" />
+
+    <!-- CHECKBOX BOOKS -->
+    <CheckBox
+        android:id="@+id/section_books"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/section_automobiles"
+        android:layout_alignTop="@+id/section_automobiles"
+        android:layout_marginTop="45dp"
+        android:text="@string/section_books"
+        android:textColor="@color/colorSection"
+        android:textSize="@dimen/word_size_checkbox"
+        android:theme="@style/cbStyle"
+        tools:ignore="DuplicateIds,RelativeOverlap" />
+
+    <!-- CHECKBOX BUSINESS -->
+    <CheckBox
+        android:id="@+id/section_business"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/edit_text_search"
+        android:layout_alignTop="@+id/edit_text_search"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="150dp"
+        android:text="@string/section_business"
+        android:textColor="@color/colorSection"
+        android:textSize="@dimen/word_size_checkbox"
+        android:theme="@style/cbStyle"
+        tools:ignore="RelativeOverlap" />
+
+    <!-- CHECKBOX FASHION -->
+    <CheckBox
+        android:id="@+id/section_fashion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/section_business"
+        android:layout_alignTop="@+id/section_business"
+        android:layout_marginTop="45dp"
+        android:text="@string/section_fashion"
+        android:textColor="@color/colorSection"
+        android:textSize="@dimen/word_size_checkbox"
+        android:theme="@style/cbStyle"
+        tools:ignore="RelativeOverlap" />
+
+    <!-- CHECKBOX FOOD -->
+    <CheckBox
+        android:id="@+id/section_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/section_fashion"
+        android:layout_alignTop="@+id/section_fashion"
+        android:layout_marginTop="45dp"
+        android:text="@string/section_food"
+        android:textColor="@color/colorSection"
+        android:textSize="@dimen/word_size_checkbox"
+        android:theme="@style/cbStyle"
+        tools:ignore="RelativeOverlap" />
+
+    <!-- CHECKBOX HEALTH -->
+    <CheckBox
+        android:id="@+id/section_health"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/section_insider"
+        android:layout_alignTop="@+id/section_insider"
+        android:layout_marginTop="45dp"
+        android:text="@string/section_health"
+        android:textColor="@color/colorSection"
+        android:textSize="@dimen/word_size_checkbox"
+        android:theme="@style/cbStyle"
+        tools:ignore="RelativeOverlap" />
+
+    <!-- CHECKBOX HOME -->
+    <CheckBox
+        android:id="@+id/section_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/section_magazine"
+        android:layout_alignTop="@+id/section_magazine"
+        android:layout_marginTop="45dp"
+        android:text="@string/section_home"
+        android:textColor="@color/colorSection"
+        android:textSize="@dimen/word_size_checkbox"
+        android:theme="@style/cbStyle"
+        tools:ignore="RelativeOverlap" />
+
+    <!-- CHECKBOX INSIDER -->
+    <CheckBox
+        android:id="@+id/section_insider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/section_food"
+        android:layout_alignTop="@+id/section_food"
+        android:layout_marginTop="45dp"
+        android:text="@string/section_insider"
+        android:textColor="@color/colorSection"
+        android:textSize="@dimen/word_size_checkbox"
+        android:theme="@style/cbStyle"
+        tools:ignore="RelativeOverlap" />
+
+    <!-- CHECKBOX MAGAZINE -->
+    <CheckBox
+        android:id="@+id/section_magazine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/section_books"
+        android:layout_alignTop="@+id/section_books"
+        android:layout_marginTop="45dp"
+        android:text="@string/section_magazine"
+        android:textColor="@color/colorSection"
+        android:textSize="@dimen/word_size_checkbox"
+        android:theme="@style/cbStyle"
+        tools:ignore="RelativeOverlap" />
+
+    <!-- EDIT TEXT SEARCH -->
     <EditText
         android:id="@+id/edit_text_search"
         android:layout_width="match_parent"
@@ -31,148 +175,7 @@
         tools:ignore="Autofill"
         tools:targetApi="lollipop" />
 
-    <CheckBox
-        android:id="@+id/checkbox_arts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/edit_begin_date"
-        android:layout_alignTop="@+id/edit_begin_date"
-        android:layout_marginStart="@+id/text_view_begin_date"
-        android:layout_marginTop="50dp"
-        android:text="@string/section_arts"
-        android:textColor="@color/colorSection"
-        android:textSize="@dimen/word_size_checkbox"
-        android:theme="@style/cbStyle"
-        tools:ignore="RelativeOverlap" />
-
-    <CheckBox
-        android:id="@+id/checkbox_automobiles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/checkbox_arts"
-        android:layout_alignTop="@+id/checkbox_arts"
-        android:layout_marginTop="40dp"
-        android:text="@string/section_automobiles"
-        android:textColor="@color/colorSection"
-        android:textSize="@dimen/word_size_checkbox"
-        android:theme="@style/cbStyle"
-        tools:ignore="RelativeOverlap" />
-
-    <CheckBox
-        android:id="@+id/checkbox_books"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/checkbox_automobiles"
-        android:layout_alignTop="@+id/checkbox_automobiles"
-        android:layout_marginTop="40dp"
-        android:text="@string/section_books"
-        android:textColor="@color/colorSection"
-        android:textSize="@dimen/word_size_checkbox"
-        android:theme="@style/cbStyle"
-        tools:ignore="RelativeOverlap" />
-
-    <CheckBox
-        android:id="@+id/checkbox_business"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/edit_end_date"
-        android:layout_alignTop="@+id/edit_end_date"
-        android:layout_marginStart="@+id/edit_end_date"
-        android:layout_marginTop="50dp"
-        android:text="@string/section_business"
-        android:textColor="@color/colorSection"
-        android:textSize="@dimen/word_size_checkbox"
-        android:theme="@style/cbStyle"
-        tools:ignore="RelativeOverlap" />
-
-    <CheckBox
-        android:id="@+id/checkbox_fashion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/checkbox_business"
-        android:layout_alignTop="@+id/checkbox_business"
-        android:layout_marginTop="40dp"
-        android:text="@string/section_fashion"
-        android:textColor="@color/colorSection"
-        android:textSize="@dimen/word_size_checkbox"
-        android:theme="@style/cbStyle"
-        tools:ignore="RelativeOverlap" />
-
-    <CheckBox
-        android:id="@+id/checkbox_food"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/checkbox_fashion"
-        android:layout_alignTop="@+id/checkbox_fashion"
-        android:layout_marginTop="40dp"
-        android:text="@string/section_food"
-        android:textColor="@color/colorSection"
-        android:textSize="@dimen/word_size_checkbox"
-        android:theme="@style/cbStyle"
-        tools:ignore="RelativeOverlap" />
-
-    <CheckBox
-        android:id="@+id/checkbox_health"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/checkbox_books"
-        android:layout_alignTop="@+id/checkbox_books"
-        android:layout_marginTop="40dp"
-        android:text="@string/section_health"
-        android:textColor="@color/colorSection"
-        android:textSize="@dimen/word_size_checkbox"
-        android:theme="@style/cbStyle"
-        tools:ignore="RelativeOverlap" />
-
-    <CheckBox
-        android:id="@+id/checkbox_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/checkbox_food"
-        android:layout_alignTop="@+id/checkbox_food"
-        android:layout_marginTop="40dp"
-        android:text="@string/section_home"
-        android:textColor="@color/colorSection"
-        android:textSize="@dimen/word_size_checkbox"
-        android:theme="@style/cbStyle"
-        tools:ignore="RelativeOverlap" />
-
-    <CheckBox
-        android:id="@+id/checkbox_insider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/checkbox_health"
-        android:layout_alignTop="@+id/checkbox_health"
-        android:layout_marginTop="40dp"
-        android:text="@string/section_insider"
-        android:textColor="@color/colorSection"
-        android:textSize="@dimen/word_size_checkbox"
-        android:theme="@style/cbStyle"
-        tools:ignore="RelativeOverlap" />
-
-    <CheckBox
-        android:id="@+id/checkbox_magazine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/checkbox_home"
-        android:layout_alignTop="@+id/checkbox_home"
-        android:layout_marginTop="40dp"
-        android:text="@string/section_magazine"
-        android:textColor="@color/colorSection"
-        android:textSize="@dimen/word_size_checkbox"
-        android:theme="@style/cbStyle"
-        tools:ignore="RelativeOverlap" />
-
-    <View
-        android:id="@+id/bar"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignTop="@+id/checkbox_magazine"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="15dp"
-        android:background="@color/colorBackgroundCase" />
-
+    <!--  TEXT VIEW BEGIN DATE -->
     <TextView
         android:id="@+id/text_view_begin_date"
         android:layout_width="wrap_content"
@@ -182,6 +185,7 @@
         android:layout_marginTop="60dp"
         android:text="@string/begin_date" />
 
+    <!-- EDIT TEXT BEGIN DATE -->
     <TextView
         android:id="@+id/edit_begin_date"
         android:layout_width="wrap_content"
@@ -197,6 +201,7 @@
         android:textColor="@color/colorContent"
         android:textSize="20sp" />
 
+    <!-- TEXT VIEW END DATE -->
     <TextView
         android:id="@+id/text_view_end_date"
         android:layout_width="wrap_content"
@@ -206,6 +211,7 @@
         android:layout_marginTop="60dp"
         android:text="@string/end_date" />
 
+    <!-- EDIT TEXT END DATE -->
     <TextView
         android:id="@+id/edit_end_date"
         android:layout_width="wrap_content"
@@ -221,13 +227,70 @@
         android:textColor="@color/colorContent"
         android:textSize="20sp" />
 
+    <!-- BAR -->
+    <View
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignTop="@+id/section_home"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/colorBackgroundCase" />
+
+    <!-- TEXT VIEW HOUR OF REQUEST FOR NOTIFICATIONS -->
     <TextView
+        android:id="@+id/text_view_hour_of_notifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/bar"
+        android:layout_alignTop="@id/bar"
+        android:layout_marginTop="25dp"
+        android:text="@string/notification_time"
+        android:textSize="20sp" />
+
+    <!-- EDIT TEXT HOUR OF REQUEST FOR NOTIFICATIONS -->
+    <TextView
+        android:id="@+id/edit_text_hour_of_notifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/bar"
+        android:layout_alignBottom="@id/text_view_hour_of_notifications"
+        android:clickable="true"
+        android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
+        android:focusable="true"
+        android:hint="@string/hour"
+        android:longClickable="false"
+        android:textColor="@color/colorSection"
+        android:textSize="20sp" />
+
+    <!-- TEXT VIEW NOTIFICATIONS SWITCH -->
+    <TextView
+        android:id="@+id/text_enable_notifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/text_view_hour_of_notifications"
+        android:layout_alignTop="@id/bar"
+        android:layout_marginTop="60dp"
+        android:text="@string/enable_notifications"
+        android:textSize="20sp" />
+
+    <!-- SWITCH NOTIFICATIONS -->
+    <Switch
+        android:id="@+id/button_for_enable_notifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/text_enable_notifications"
+        android:layout_alignEnd="@id/bar" />
+
+    <!-- BUTTON DONE FOR SEARCH -->
+    <Button
         android:id="@+id/button_done_for_search"
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:layout_below="@+id/bar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="100dp"
         android:background="@color/colorBackgroundCase"
         android:clickable="true"
         android:focusable="true"
@@ -236,21 +299,17 @@
         android:textColor="@color/colorSection"
         android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/text_enable_notifications"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@id/bar"
-        android:layout_alignTop="@id/bar"
-        android:layout_marginTop="25dp"
-        android:text="@string/enable_notifications"
-        android:textSize="20sp" />
-
-    <Switch
-        android:id="@+id/button_for_enable_notifications"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/text_enable_notifications"
-        android:layout_alignEnd="@id/bar" />
+    <!-- FRAME LAYOUT -->
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/activity_search_FrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        tools:ignore="RedundantNamespace">
+    </FrameLayout>
 
 </RelativeLayout>
