@@ -703,14 +703,14 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
     }
 
     @Override
-    public void callbackSearchArticle(Doc SearchArticle) {
-        startResultOfSearchFragment(SearchArticle);
+    public void callbackSearchArticle(Doc searchArticle) {
+        startResultOfSearchFragment(searchArticle);
     }
 
-    private void startResultOfSearchFragment(Doc SearchArticle) {
+    private void startResultOfSearchFragment(Doc searchArticle) {
         Intent intent = new Intent(NotiSearchActivity.this,
                 WebViewActivity.class);
-        intent.putExtra(TOPSTORIES_EXTRA, SearchArticle.getWebUrl());
+        intent.putExtra(TOPSTORIES_EXTRA, searchArticle.getWebUrl());
         startActivity(intent);
     }
 }

@@ -1,6 +1,7 @@
 package com.fossourier.nicolas.mynews.Controllers.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.fossourier.nicolas.mynews.Controllers.Activities.WebViewActivity;
 import com.fossourier.nicolas.mynews.Models.Doc;
 import com.fossourier.nicolas.mynews.Models.SearchArticle;
 import com.fossourier.nicolas.mynews.R;
@@ -83,7 +85,7 @@ public class ResultOfSearchFragment extends Fragment implements View.OnClickList
     //-------------------------//
     private void configureRecyclerView() {
         this.listSearchArticle = new ArrayList<>();
-        this.mResultOfSearchAdapter = new ResultOfSearchAdapter(this.listSearchArticle, Glide.with(this), this);
+        this.mResultOfSearchAdapter = new ResultOfSearchAdapter(this.listSearchArticle, Glide.with(this), this::recyclerViewResultOnClick);
         this.mRecyclerView.setAdapter(this.mResultOfSearchAdapter);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
@@ -113,5 +115,15 @@ public class ResultOfSearchFragment extends Fragment implements View.OnClickList
 
     public interface ResultOfSearchFragmentListener {
         void callbackSearchArticle(Doc SearchArticle);
+    }
+
+    //---------------------------------------------------------------------------------------//
+    // Start Article Activity when clicked on a RecyclerView item to display it in a WebView //
+    //---------------------------------------------------------------------------------------//
+    public void recyclerViewResultOnClick(int position) {
+        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+        String url = listSearchArticle.get(position).getWebUrl();
+        intent.putExtra("URL", url);
+        startActivity(intent);
     }
 }
