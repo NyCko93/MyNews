@@ -17,11 +17,7 @@ public class Response {
     @Expose
     private Meta meta;
 
-//    public Collection<? extends Doc> getDocs() {
-//        return docs;
-//    }
-
-    public List<Doc> getDocs() {
+    public Collection<? extends Doc> getDocs() {
         return docs;
     }
 

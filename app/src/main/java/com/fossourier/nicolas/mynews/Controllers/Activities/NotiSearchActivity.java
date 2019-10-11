@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
@@ -27,7 +26,6 @@ import com.fossourier.nicolas.mynews.Models.SearchArticle;
 import com.fossourier.nicolas.mynews.R;
 import com.fossourier.nicolas.mynews.Utils.AlarmHelper;
 import com.fossourier.nicolas.mynews.Utils.DateHelper;
-
 import com.fossourier.nicolas.mynews.Utils.ErrorListener;
 import com.fossourier.nicolas.mynews.Utils.FocusListener;
 import com.fossourier.nicolas.mynews.Utils.NewYorkTimesStreams;
@@ -38,7 +36,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
-
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -146,7 +143,6 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
         sectionMagazine.setOnClickListener(this);
         buttonSearch.setOnClickListener(this);
     }
-
 
       //-----------------------//
      // For hide the keyboard //
@@ -628,7 +624,7 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
     //---------------------------//
     private void executeSearchRequest() {
         ArrayList<String> sections = mSharedPreferences.getListSection(1);
-        Disposable disposable = NewYorkTimesStreams.streamArticleSearch(mQueryTermSearch,mSectionCheckbox,mBeginDate,mEndDate)
+        Disposable disposable = NewYorkTimesStreams.streamArticleSearch(mQueryTermSearch,sections,mBeginDate,mEndDate)
                 .subscribeWith(new DisposableObserver<SearchArticle>() {
                     @Override
                     public void onNext(SearchArticle searchArticle) {
@@ -652,28 +648,16 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
         } else {
             Bundle bundle = new Bundle();
             bundle.putParcelable(SEARCHED_ARTICLE, searchArticle);
-            ResultOfSearchFragment searchResultFragment = (ResultOfSearchFragment)
-                    getSupportFragmentManager().findFragmentById(R.id.activity_search_FrameLayout);
-            if (searchResultFragment == null) {
-                searchResultFragment = new ResultOfSearchFragment();
-                searchResultFragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().add(R.id.activity_search_FrameLayout,
-                        searchResultFragment)
+            ResultOfSearchFragment resultOfSearchFragment = (ResultOfSearchFragment)
+                    getSupportFragmentManager().findFragmentById(R.id.activity_search_frame_layout);
+            if (resultOfSearchFragment == null) {
+                resultOfSearchFragment = new ResultOfSearchFragment();
+                resultOfSearchFragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().add(R.id.activity_search_frame_layout,
+                        resultOfSearchFragment)
                         .commit();
             }
         }
-    }
-
-    @Override
-    public void callbackSearchArticle(Doc SearchArticle) {
-        startResultOfSearchFragment(SearchArticle);
-    }
-
-    private void startResultOfSearchFragment(Doc SearchArticle) {
-        Intent webViewActivityIntent = new Intent(NotiSearchActivity.this,
-                WebViewActivity.class);
-        webViewActivityIntent.putExtra(TOPSTORIES_EXTRA, SearchArticle.getWebUrl());
-        startActivity(webViewActivityIntent);
     }
 
     @Override
@@ -716,5 +700,17 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
     public void onGetRequestFocus(boolean bool) {
         if (bool) { editTextSearch.requestFocus();
         }
+    }
+
+    @Override
+    public void callbackSearchArticle(Doc SearchArticle) {
+        startResultOfSearchFragment(SearchArticle);
+    }
+
+    private void startResultOfSearchFragment(Doc SearchArticle) {
+        Intent intent = new Intent(NotiSearchActivity.this,
+                WebViewActivity.class);
+        intent.putExtra(TOPSTORIES_EXTRA, SearchArticle.getWebUrl());
+        startActivity(intent);
     }
 }

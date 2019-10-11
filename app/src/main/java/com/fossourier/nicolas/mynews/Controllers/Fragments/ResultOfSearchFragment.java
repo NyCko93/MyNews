@@ -8,12 +8,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.fossourier.nicolas.mynews.Models.Doc;
@@ -31,51 +31,46 @@ import butterknife.ButterKnife;
 
 import static com.fossourier.nicolas.mynews.Controllers.Activities.NotiSearchActivity.SEARCHED_ARTICLE;
 
-public class ResultOfSearchFragment extends Fragment implements View.OnClickListener,
-        ResultOfSearchAdapter.onSearchArticleAdapterListener {
+public class ResultOfSearchFragment extends Fragment implements View.OnClickListener, ResultOfSearchAdapter.ResultOfSearchRVOnClickListener {
 
     @BindView(R.id.result_of_search_recycler_view)
     RecyclerView mRecyclerView;
-    @BindView(R.id.fragment_search_result_swipe_container)
-    SwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.sr_textview_empty)
     TextView mTextView;
-    private List<Doc> response;
+    private List<Doc> listSearchArticle;
     private SearchArticle mSearchArticle;
     private ResultOfSearchAdapter mResultOfSearchAdapter;
+    private ResultOfSearchFragmentListener mResultOfSearchRVOnClickListener;
     private ResultOfSearchFragmentListener mResultOfSearchFragmentListener;
 
     public ResultOfSearchFragment() {
         // Required empty public constructor
     }
 
-      //-----------------//
-     // Attach callback //
+    //-----------------//
+    // Attach callback //
     //-----------------//
     @Override
     public void onAttach(@NotNull Context context) {
         super.onAttach(context);
         if (context instanceof ResultOfSearchFragmentListener) {
-            mResultOfSearchFragmentListener = (ResultOfSearchFragmentListener) context;
+            mResultOfSearchRVOnClickListener = (ResultOfSearchFragmentListener) context;
         }
     }
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_result_of_search,
-                container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_result_of_search, container, false);
         ButterKnife.bind(this, view);
         configureRecyclerView();
-        configureSwipeRefreshLayout();
-        updateUI();
         getBundle();
+        updateUI();
         return view;
     }
 
-      //---------------------------------------------//
-     // Get Bundle with options of searched article //
+    //---------------------------------------------//
+    // Get Bundle with options of searched article //
     //---------------------------------------------//
     private void getBundle() {
         if (getArguments() != null) {
@@ -83,61 +78,39 @@ public class ResultOfSearchFragment extends Fragment implements View.OnClickList
         }
     }
 
-      //-------------------------//
-     // Configure RecyclerView  //
+    //-------------------------//
+    // Configure RecyclerView  //
     //-------------------------//
     private void configureRecyclerView() {
-        this.response = new ArrayList<>();
-        this.mResultOfSearchAdapter = new ResultOfSearchAdapter(this.response, Glide.with(this), this);
+        this.listSearchArticle = new ArrayList<>();
+        this.mResultOfSearchAdapter = new ResultOfSearchAdapter(this.listSearchArticle, Glide.with(this), this);
         this.mRecyclerView.setAdapter(this.mResultOfSearchAdapter);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-      //------------------------------//
-     // Configure SwipeRefreshLayout //
-    //------------------------------//
-    private void configureSwipeRefreshLayout() {
-        mSwipeRefreshLayout.setOnRefreshListener(this::updateUI);
-    }
-
-
-      //-----------------------------------------//
-     // Update UI with List of result of search //
+    //-----------------------------------------//
+    // Update UI with List of result of search //
     //-----------------------------------------//
     private void updateUI() {
-        // List of RecyclerView
-        if ( response.size() >= 1) {
-            response.clear();
+        listSearchArticle.clear();
+        if (mSearchArticle.getResponse().getDocs().isEmpty()) {
+            Toast.makeText(getActivity(), "Vous n'avez pas d'article à afficher", Toast.LENGTH_LONG).show();
+        } else {
+            listSearchArticle.addAll(mSearchArticle.getResponse().getDocs());
         }
-        // Add articles of mSearchArticle (result of search) in response for display in RecyclerView
-        if (mSearchArticle.getResponse().getDocs().size() >= 1) {
-            response.addAll(mSearchArticle.getResponse().getDocs());
-
-            // If response == 0, show a toast with "NO RESULT"
-            if (response.size() == 0) {
-                mTextView.setVisibility(View.VISIBLE);
-                mTextView.setText(R.string.no_result);
-            }
-            mResultOfSearchAdapter.notifyDataSetChanged();
-            mSwipeRefreshLayout.setRefreshing(false);
-        }
+        mResultOfSearchAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onClick(View view) {
     }
 
-      //----------------//
-     // Start Callback //
-    //----------------//
     @Override
-    public void onArticleClicked(Doc resultTopStories) {
-        mResultOfSearchFragmentListener.callbackSearchArticle(resultTopStories);
+    public void onSearchArticleClick(int position) {
+        mResultOfSearchRVOnClickListener.callbackSearchArticle(listSearchArticle.get(position));
     }
 
-      //----------//
-     // Callback //
-    //----------//
+
     public interface ResultOfSearchFragmentListener {
         void callbackSearchArticle(Doc SearchArticle);
     }

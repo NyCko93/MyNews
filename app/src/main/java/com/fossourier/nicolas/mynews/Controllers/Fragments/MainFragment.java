@@ -270,6 +270,9 @@ public class MainFragment extends Fragment {
     public void updateFragmentSection(String section) {
         mSectionChoisen = section;
         executeHttpRequestSection(mSectionChoisen);
+    }
 
+    public interface MainFragmentListener {
+        void callbackArticle(Result article);
     }
 }

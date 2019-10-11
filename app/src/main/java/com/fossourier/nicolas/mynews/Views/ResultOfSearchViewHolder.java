@@ -2,7 +2,6 @@ package com.fossourier.nicolas.mynews.Views;
 
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,41 +14,64 @@ import com.fossourier.nicolas.mynews.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ResultOfSearchViewHolder extends RecyclerView.ViewHolder {
+public class ResultOfSearchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
-    @BindView(R.id.fragment_main_item_date)
-    TextView textViewDate;
-    @BindView(R.id.fragment_main_item_image)
-    ImageView mImageView;
-    @BindView(R.id.fragment_main_item_section)
-    TextView textViewSection;
-    @BindView(R.id.item_search)
-    RelativeLayout mRelativeLayout;
-    private static final String URL = "https://static01.nyt.com/";
+    @BindView(R.id.fragment_result_search_item_section)
+    TextView textSectionSearch;
+    @BindView(R.id.fragment_result_search_item_date)
+    TextView textDateSearch;
+    @BindView(R.id.fragment_result_search_item_content)
+    TextView textContentSearch;
+    @BindView(R.id.fragment_result_search_item_image)
+    ImageView imageSearch;
 
-    ResultOfSearchViewHolder(View itemView) {
+    final ResultOfSearchAdapter.ResultOfSearchRVOnClickListener mResultOfSearchRVOnClickListener;
+
+    ResultOfSearchViewHolder(View itemView, ResultOfSearchAdapter.ResultOfSearchRVOnClickListener mResultOfSearchRVOnClickListener) {
         super(itemView);
+        itemView.setOnClickListener(this);
+        this.mResultOfSearchRVOnClickListener = mResultOfSearchRVOnClickListener;
         ButterKnife.bind(this, itemView);
     }
 
-    void updateWithResult(final Doc articles, RequestManager glide,
-                          final ResultOfSearchAdapter.onSearchArticleAdapterListener callback) {
-        if (articles.getSectionName() != null) {
-            this.textViewSection.setText(articles.getSectionName());
+    void updateWithResult(final Doc listSearchArticle, RequestManager glide) {
+
+          //---------------//
+         //    ABSTRACT   //
+        //---------------//
+        if (listSearchArticle.getHeadline() != null) {
+            this.textContentSearch.setText(listSearchArticle.getHeadline().getMain());
+        }
+
+          //-----------------//
+         // PUBLISHED DATE  //
+        //-----------------//
+        if (listSearchArticle.getPubDate() != null) {
+            this.textDateSearch.setText(listSearchArticle.getPubDate().substring(0, 10));
+        }
+
+          //--------------//
+         // SECTION NAME //
+        //--------------//
+        if (listSearchArticle.getSectionName() != null) {
+            this.textSectionSearch.setText(listSearchArticle.getSectionName());
         } else {
-            textViewSection.setText("");
+            textSectionSearch.setText("");
         }
-        if (articles.getPubDate() != null) {
-            String date = articles.getPubDate().substring(0, 10);
-            this.textViewDate.setText(date);
-        }
-        if (!articles.getMultimedia().isEmpty()) {
-            String mUrl = URL + articles.getMultimedia().get(0).getUrl();
-            glide.load(mUrl).apply(RequestOptions.centerCropTransform()).into(mImageView);
+
+          //-----------------//
+         //      IMAGE      //
+        //-----------------//
+        if (listSearchArticle.getMultimedia() != null && listSearchArticle.getMultimedia().size() >= 1) {
+            glide.load(listSearchArticle.getMultimedia().get(0).getUrl()).apply(RequestOptions.centerInsideTransform()).into(imageSearch);
         } else {
-            mImageView.setImageResource(R.drawable.nytimes_default);
+            imageSearch.setImageResource(R.drawable.nytimes_default);
         }
-        this.mRelativeLayout.setOnClickListener(v -> callback.onArticleClicked(articles));
+    }
+
+    @Override
+    public void onClick(View v) {
+        mResultOfSearchRVOnClickListener.onSearchArticleClick(getAdapterPosition());
     }
 }

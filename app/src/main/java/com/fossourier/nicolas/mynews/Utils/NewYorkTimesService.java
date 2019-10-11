@@ -32,29 +32,7 @@ public interface NewYorkTimesService {
     @GET("svc/mostpopular/v2/viewed/{period}.json?" + API_KEY)
     Observable<Article> getArticleMostPopular(@Path("period") String period);
 
-//    // API Search with date
-//    @GET("svc/search/v2/articlesearch.json?" + API_KEY)
-//    Observable<SearchArticle> getArticleSearch(@Query("q") String search, @Query("fq") String listSection, @Query("begin_date") String beginDate, @Query("end_date") String endDate);
-
-//    @GET("svc/search/v2/articlesearch.json?sort=newest&fl=web_url,headline,multimedia,news_desk,pub_date")
-//    Observable<SearchArticle> getArticleSearch(@Query("api-key") String API_KEY,
-//                                    @Query("q") String search,
-//                                    @Query("fq") List<String> category,
-//                                    @Query("begin_date") String beginDate,
-//                                    @Query("end_date") String endDate,
-//                                    @Query("sort") String sort
-//
-//    );
-
-//    @GET("svc/search/v2/articlesearch.json?" + API_KEY)
-//    Observable<SearchArticle> getArticleSearch(@Query("q") String search,
-//                                               @Query("fq") List<String> category,
-//                                               @Query("begin_date") String beginDate,
-//                                               @Query("end_date") String endDate,
-//                                               @Query("sort") String sort
-//    );
-
-
+    // API Search
     @GET("svc/search/v2/articlesearch.json?sort=newest&" + API_KEY)
     Observable<SearchArticle> getArticleSearch(@Query("q") String search, @Nullable @Query("fq") List<String> listSections, @Nullable @Query("begin_date") String beginDate, @Nullable @Query("end_date") String endDate);
 

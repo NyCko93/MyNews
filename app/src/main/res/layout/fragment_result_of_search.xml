@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:id="@+id/fragment_result_of_search"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_notisearch">
 
     <TextView
         android:id="@+id/sr_textview_empty"
@@ -17,20 +20,11 @@
         android:textStyle="bold"
         android:visibility="gone" />
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/fragment_search_result_swipe_container"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/result_of_search_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="55dp"
-        android:background="@android:color/white">
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/result_of_search_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/white" />
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        tools:listitem="@layout/fragment_result_of_search_item"/>
 
 </RelativeLayout>
+

@@ -1,5 +1,6 @@
 package com.fossourier.nicolas.mynews.Views;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,7 +23,6 @@ import static com.fossourier.nicolas.mynews.R.drawable.nytimes_default;
 // ----------------------//
 // ITEM OF RECYCLERVIEW  //
 // ----------------------//
-@SuppressWarnings("ResultOfMethodCallIgnored")
 public class ArticleViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
 
     @BindView(R.id.fragment_main_item_section) TextView textSection;
@@ -38,27 +38,28 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder  implements View.
         itemView.setOnClickListener(this);
     }
 
+    @SuppressLint("SetTextI18n")
     public void updateWithArticles(Result listArticles, RequestManager glide) {
+
         // -----------------//
         //     ABSTRACT     //
         // -----------------//
-        // Display Abstract
         this.textContent.setText(listArticles.getAbstract());
+
         // -----------------//
         //  PUBLISHED DATE  //
         // -----------------//
-        // Display PublishedDate
         if (listArticles.getPublishedDate() != null) {
             this.textDate.setText(listArticles.getPublishedDate().substring(0, 10));
         }
-        // ----------------------//
-        // SECTION OR SUBSECTION //
-        // ----------------------//
-        // Display Section or SubSection if Section == null
-        if (listArticles.getSection() == null) listArticles.getSubsection();
-        else {
-            this.textSection.setText(listArticles.getSection());
-        }
+
+        // ---------------------------//
+        // SECTION AND/OR SUBSECTION //
+        // -------------------------//
+        if ((listArticles.getSubsection() != null) && (!listArticles.getSubsection().isEmpty())){
+            this.textSection.setText(listArticles.getSection() + " > " + listArticles.getSubsection());}
+        else {this.textSection.setText(listArticles.getSection());}
+
         // -----------------//
         //       IMAGE      //
         // -----------------//

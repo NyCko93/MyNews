@@ -5,10 +5,12 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.fossourier.nicolas.mynews.R;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -26,6 +28,9 @@ public class WebViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_web_view);
         ButterKnife.bind(this, this);
         webView.loadUrl(getIntent().getStringExtra("URL"));
+        configureToolBar();
+        onConfigureWebView();
+        onPageFinished();
     }
 
       //-------------------//
@@ -34,6 +39,8 @@ public class WebViewActivity extends AppCompatActivity {
     private void configureToolBar() {
         this.mToolbar = findViewById(R.id.toolbar_noti_search);
         setSupportActionBar(mToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
     }
 
       //-------------------//
@@ -63,13 +70,6 @@ public class WebViewActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-    }
-
-      //-----------//
-     // Update UI //
-    //-----------//
-    protected void updateUI(String url) {
-        webView.loadUrl(url);
     }
 }
 

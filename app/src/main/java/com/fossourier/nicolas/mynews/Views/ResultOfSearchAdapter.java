@@ -16,14 +16,14 @@ import java.util.List;
 
 public class ResultOfSearchAdapter extends RecyclerView.Adapter<ResultOfSearchViewHolder> {
 
-    private final onSearchArticleAdapterListener mListener;
-    private List<Doc> mSearch;
+    private final ResultOfSearchRVOnClickListener mResultOfSearchRVOnClickListener;
+    private List<Doc> listSearchArticle;
     private RequestManager mGlide;
 
-    public ResultOfSearchAdapter(List<Doc> search, RequestManager glide,
-                                 onSearchArticleAdapterListener searchArticleAdapterListener) {
-        this.mListener = searchArticleAdapterListener;
-        this.mSearch = search;
+
+    public ResultOfSearchAdapter(List<Doc> listSearchArticle, RequestManager glide, ResultOfSearchRVOnClickListener mResultOfSearchRVOnClickListener) {
+        this.mResultOfSearchRVOnClickListener = mResultOfSearchRVOnClickListener;
+        this.listSearchArticle = listSearchArticle;
         this.mGlide = glide;
     }
 
@@ -32,23 +32,25 @@ public class ResultOfSearchAdapter extends RecyclerView.Adapter<ResultOfSearchVi
     public ResultOfSearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.activity_result_of_search_item, parent, false);
-        return new ResultOfSearchViewHolder(view);
+        View view = inflater.inflate(R.layout.fragment_result_of_search_item, parent, false);
+        return new ResultOfSearchViewHolder(view, mResultOfSearchRVOnClickListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ResultOfSearchViewHolder holder, int position) {
-        if (mSearch != null && mSearch.size() >= position + 1 && mSearch.get(position) != null) {
-            holder.updateWithResult(this.mSearch.get(position), this.mGlide, mListener);
+        if (listSearchArticle != null && listSearchArticle.size() >= position + 1 && listSearchArticle.get(position) != null) {
+            holder.updateWithResult(this.listSearchArticle.get(position), this.mGlide);
         }
     }
 
     @Override
     public int getItemCount() {
-        return this.mSearch.size();
+        return this.listSearchArticle.size();
     }
 
-    public interface onSearchArticleAdapterListener {
-        void onArticleClicked(Doc resultTopStories);
+    // Interface to configure a listener on RecyclerView items
+    public interface ResultOfSearchRVOnClickListener {
+        void onSearchArticleClick(int position);
     }
+
 }

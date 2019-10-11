@@ -27,8 +27,7 @@ import java.util.Objects;
 
 import static com.fossourier.nicolas.mynews.Models.Result.TOPSTORIES_EXTRA;
 
-
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements MainFragment.MainFragmentListener,NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -54,9 +53,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tabs.setupWithViewPager(viewPager);
         tabs.setTabMode(TabLayout.MODE_FIXED);
         viewPager.setAdapter(pagerAdapter);
+
         configureToolBar();
         configureDrawerLayout();
         configureNavigationView();
+
         mSharedPreferences = SharedPreferences.getInstance(this);
     }
 
@@ -309,13 +310,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      // PageFragment callback //
     //-----------------------//
     public void callbackArticle(Result article) {
-        startWebViewActivity(article);
+        startNotiSearchActivity(article);
     }
 
-    private void startWebViewActivity(Result article) {
-        Intent webViewActivityIntent = new Intent(MainActivity.this,
-                WebViewActivity.class);
-        webViewActivityIntent.putExtra(TOPSTORIES_EXTRA, article.getUrl());
-        startActivity(webViewActivityIntent);
+    private void startNotiSearchActivity(Result article) {
+        Intent notiSearchActivityIntent = new Intent(MainActivity.this,
+                NotiSearchActivity.class);
+        notiSearchActivityIntent.putExtra(TOPSTORIES_EXTRA, article.getUrl());
+        startActivity(notiSearchActivityIntent);
     }
 }
