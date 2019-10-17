@@ -258,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Main
      // Configure Toolbar //
     //-------------------//
     private void configureToolBar() {
-        this.toolbar = findViewById(R.id.activity_main_toolbar);
+        this.toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 

@@ -159,7 +159,7 @@ public class SharedPreferences {
     }
 
     public String getNotifTime() {
-        return prefs.getString("HOUROFNOTIFICATIONS", "");
+        return prefs.getString("HOUROFNOTIFICATIONS", "10:00");
     }
 
 }

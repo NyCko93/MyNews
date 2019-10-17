@@ -42,7 +42,6 @@ public class AlarmHelper {
             mAlarmManager.cancel(mPendingIntent);
             AlarmToastHelper.alarmToast(false, context);
         }
-
     }
 
      static class AlarmToastHelper {

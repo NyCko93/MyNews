@@ -17,15 +17,15 @@ import butterknife.ButterKnife;
 // Webview for display the article clicked
 public class WebViewActivity extends AppCompatActivity {
 
-    @BindView(R.id.web_view_activity)
     WebView webView;
-    @BindView(R.id.toolbar_noti_search)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
+        webView = (WebView) findViewById(R.id.web_view_activity);
         ButterKnife.bind(this, this);
         webView.loadUrl(getIntent().getStringExtra("URL"));
         configureToolBar();
@@ -37,10 +37,10 @@ public class WebViewActivity extends AppCompatActivity {
      // Configure Toolbar //
     //-------------------//
     private void configureToolBar() {
-        this.mToolbar = findViewById(R.id.toolbar_noti_search);
         setSupportActionBar(mToolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+        assert ab != null;
     }
 
       //-------------------//
@@ -58,13 +58,11 @@ public class WebViewActivity extends AppCompatActivity {
         webView.setVisibility(View.VISIBLE);
     }
 
-    @Override
     public void onBackPressed() {
-        if (webView.canGoBack()) {
-            webView.goBack();
-        } else {
-            super.onBackPressed();
-        }
+        if(webView!= null && webView.canGoBack())
+            webView.goBack();// if there is previous page open it
+        else
+            super.onBackPressed();//if there is no previous page, close app
     }
 
     @Override

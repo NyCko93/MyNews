@@ -16,13 +16,10 @@
         android:orientation="vertical"
         tools:context="com.fossourier.nicolas.mynews.Controllers.Activities.MainActivity">
 
-        <!-- Toolbar -->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/activity_main_toolbar"
+        <include
+            layout="@layout/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:theme="@style/ToolBarStyle" />
+            android:layout_height="wrap_content" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"

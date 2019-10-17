@@ -47,7 +47,7 @@ import static com.fossourier.nicolas.mynews.Models.Result.TOPSTORIES_EXTRA;
 public class NotiSearchActivity extends AppCompatActivity implements View.OnClickListener,
         ResultOfSearchFragment.ResultOfSearchFragmentListener, ErrorListener, FocusListener {
 
-    @BindView(R.id.toolbar_noti_search)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.section_arts)
     CheckBox sectionArts;
@@ -99,6 +99,7 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
     public Boolean mNotificationsEnable;
     public Boolean mActivityChoisen;
     public String mHourOfNotifications;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

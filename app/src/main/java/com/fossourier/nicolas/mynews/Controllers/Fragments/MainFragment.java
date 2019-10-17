@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +55,8 @@ public class MainFragment extends Fragment {
     private String mSectionChoisen = "Section Choisen";
     private SharedPreferences mSharedPreferences;
     TextView textView;
+    @BindView(R.id.fragment_progress_bar)
+    ProgressBar progressBar;
 
     public MainFragment() {
     }
@@ -76,6 +79,7 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, view);
+        progressBar.setVisibility(View.VISIBLE);
         this.configureRecyclerView(); // Call during UI creation
         assert getArguments() != null;
         mPosition = getArguments().getInt(POSITION);
@@ -112,6 +116,7 @@ public class MainFragment extends Fragment {
 
             @Override
             public void onComplete() {
+                progressBar.setVisibility(View.GONE);
                 Log.e("TAG", "On Complete !!");
                 displayArticle();
             }
@@ -141,6 +146,7 @@ public class MainFragment extends Fragment {
 
             @Override
             public void onComplete() {
+                progressBar.setVisibility(View.GONE);
                 Log.e("TAG", "On Complete !!");
                 displayArticle();
             }
@@ -170,6 +176,7 @@ public class MainFragment extends Fragment {
 
             @Override
             public void onComplete() {
+                progressBar.setVisibility(View.GONE);
                 Log.e("TAG", "On Complete !!");
                 displayArticle();
             }
@@ -198,6 +205,7 @@ public class MainFragment extends Fragment {
             case 2: if (Connectivity.networkInfo(getActivity())){
                 ArrayList<String> listSection = mSharedPreferences.getListSection(0);
                 if (listSection.size() < 1) {
+                    progressBar.setVisibility(View.GONE);
                     executeHttpRequestSection("business");
                 } else {
                     mSectionChoisen = listSection.get(0);
@@ -217,6 +225,7 @@ public class MainFragment extends Fragment {
     private void internetDoesNotWork() {
         textView.setVisibility(View.VISIBLE);
         textView.setText("Internet does not work");
+        progressBar.setVisibility(View.GONE);
     }
 
     private void updateUI(Article article) {

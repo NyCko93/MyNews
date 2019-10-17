@@ -12,4 +12,14 @@
         android:layout_height="match_parent"
         tools:listitem="@layout/fragment_main_item" />
 
+    <ProgressBar
+        android:id="@+id/fragment_progress_bar"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="216dp"
+        android:visibility="gone" />
+
+
 </RelativeLayout>
