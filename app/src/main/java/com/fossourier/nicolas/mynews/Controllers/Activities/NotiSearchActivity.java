@@ -47,8 +47,12 @@ import static com.fossourier.nicolas.mynews.Models.Result.TOPSTORIES_EXTRA;
 public class NotiSearchActivity extends AppCompatActivity implements View.OnClickListener,
         ResultOfSearchFragment.ResultOfSearchFragmentListener, ErrorListener, FocusListener {
 
+
+
+    // TOOLBAR
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    // CHECKBOX SECTIONS
     @BindView(R.id.section_arts)
     CheckBox sectionArts;
     @BindView(R.id.section_automobiles)
@@ -69,10 +73,13 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
     CheckBox sectionInsider;
     @BindView(R.id.section_magazine)
     CheckBox sectionMagazine;
-    @BindView(R.id.edit_text_search)
-    EditText editTextSearch;
+    // EDIT TEXT FOR QUERY
+    @BindView(R.id.edit_text_for_query)
+    EditText editTextForQuery;
+    // BUTTON DONE FOR RESEARCH
     @BindView(R.id.button_done_for_search)
     TextView buttonSearch;
+    // DATE FOR RESEARCH
     @BindView(R.id.edit_begin_date)
     TextView editBeginDate;
     @BindView(R.id.text_view_begin_date)
@@ -81,25 +88,27 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
     TextView editEndDate;
     @BindView(R.id.text_view_end_date)
     TextView textViewEndDate;
-    @BindView(R.id.edit_text_hour_of_notifications)
-    TextView editTextHourOfNotifications;
-    @BindView(R.id.text_view_hour_of_notifications)
-    TextView textViewHourOfNotifications;
+    // TIME PICKER FOR NOTIFICATIONS
+    @BindView(R.id.button_time_picker)
+    TextView buttonTimePicker;
+    @BindView(R.id.text_view_time_picker)
+    TextView textViewTimePicker;
+    // NOTIFICATIONS
     @BindView(R.id.text_enable_notifications)
     TextView textEnableNotifications;
     @BindView(R.id.button_for_enable_notifications)
     Switch buttonSwitchNotifications;
-    private static SharedPreferences mSharedPreferences;
+
+    public Boolean mNotificationsEnable;
+    public String mQueryTermNotifications;
     public static final String SEARCHED_ARTICLE = "searched_article";
+    private static SharedPreferences mSharedPreferences;
     private String mBeginDate = "";
     private String mEndDate = "";
     public String mQueryTermSearch;
-    public List<String> mSectionCheckbox;
-    public String mQueryTermNotifications;
-    public Boolean mNotificationsEnable;
+    public String mHourTimePicker;
     public Boolean mActivityChoisen;
-    public String mHourOfNotifications;
-
+    public List<String> mSectionCheckbox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,8 +137,7 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
      // Initialisation of listeners //
     //-----------------------------//
     private void initListener() {
-
-        editTextSearch.setOnClickListener(this);
+        editTextForQuery.setOnClickListener(this);
         editBeginDate.setOnClickListener(this);
         editEndDate.setOnClickListener(this);
         sectionArts.setOnClickListener(this);
@@ -143,6 +151,7 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
         sectionInsider.setOnClickListener(this);
         sectionMagazine.setOnClickListener(this);
         buttonSearch.setOnClickListener(this);
+        buttonTimePicker.setOnClickListener(this);
     }
 
       //-----------------------//
@@ -176,8 +185,8 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
         // For search
         if (mActivityChoisen) {
             // Layout Notifications >> GONE
-            textViewHourOfNotifications.setVisibility(View.GONE);
-            editTextHourOfNotifications.setVisibility(View.GONE);
+            textViewTimePicker.setVisibility(View.GONE);
+            buttonTimePicker.setVisibility(View.GONE);
             textEnableNotifications.setVisibility(View.GONE);
             buttonSwitchNotifications.setVisibility(View.GONE);
             // Layout Search >> VISIBLE
@@ -190,8 +199,8 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
         // For notification
         else {
             // Layout Notifications >> VISIBLE
-            textViewHourOfNotifications.setVisibility(View.VISIBLE);
-            editTextHourOfNotifications.setVisibility(View.VISIBLE);
+            textViewTimePicker.setVisibility(View.VISIBLE);
+            buttonTimePicker.setVisibility(View.VISIBLE);
             textEnableNotifications.setVisibility(View.VISIBLE);
             buttonSwitchNotifications.setVisibility(View.VISIBLE);
             // Layout Search >> GONE
@@ -212,10 +221,10 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
             mNotificationsEnable = mSharedPreferences.getNotiSearchBoolean();
             mQueryTermNotifications = mSharedPreferences.getQueryTermNotifications();
             if (!mQueryTermNotifications.equals("") || mQueryTermNotifications.isEmpty()) {
-                editTextSearch.setText(mQueryTermNotifications);
+                editTextForQuery.setText(mQueryTermNotifications);
             }
         }
-        editTextSearch.addTextChangedListener(new TextWatcher() {
+        editTextForQuery.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -227,9 +236,9 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void afterTextChanged(Editable editable) {
                 if (mActivityChoisen) {
-                    mQueryTermSearch = editTextSearch.getText().toString();
+                    mQueryTermSearch = editTextForQuery.getText().toString();
                 } else {
-                    mQueryTermNotifications = editTextSearch.getText().toString();
+                    mQueryTermNotifications = editTextForQuery.getText().toString();
                 }
             }
         });
@@ -294,11 +303,11 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
      // Get the selected hour or get the hour per default for Notifications //
     //---------------------------------------------------------------------//
     private void configureHourOfNotifications() {
-        mHourOfNotifications = mSharedPreferences.getNotifTime();
-        if (mHourOfNotifications != null && !mHourOfNotifications.isEmpty()) {
-            editTextHourOfNotifications.setText(mHourOfNotifications);
+        mHourTimePicker = mSharedPreferences.getNotifTime();
+        if (mHourTimePicker != null && !mHourTimePicker.isEmpty()) {
+            buttonTimePicker.setText(mHourTimePicker);
         } else {
-            editTextHourOfNotifications.setText("");
+            buttonTimePicker.setText("");
         }
     }
 
@@ -314,11 +323,17 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
      // Store options for Notifications and configure AlarmHelper //
     //-----------------------------------------------------------//
     private void storeNotifications() {
-        mSharedPreferences.storeQueryTermNotifications(mQueryTermNotifications);
+        // Notifications enable when the button is checked
         mNotificationsEnable = buttonSwitchNotifications.isChecked();
+        // Save notifications activation
         mSharedPreferences.storeNotiSearchBoolean(mNotificationsEnable);
+        // Save query term searched
+        mSharedPreferences.storeQueryTermNotifications(mQueryTermNotifications);
+        // Save sections checked for notifications
         mSharedPreferences.storeSectionOfNotifications(mSectionCheckbox);
-        mSharedPreferences.storeNotifTime(mHourOfNotifications);
+        // Save hour of notifications
+        mSharedPreferences.storeNotifTime(mHourTimePicker);
+        // When
         (new AlarmHelper()).configureAlarmNotif(NotiSearchActivity.this,
                 mSharedPreferences.getNotiSearchBoolean(),
                 DateHelper.setTimeNotif(mSharedPreferences.getNotifTime()));
@@ -354,13 +369,13 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
         int min = calendar.get(Calendar.MINUTE);
         // Date picker for select the desired date
         DatePickerDialog setDate;
-        if (view != editTextSearch) {
+        if (view != editTextForQuery) {
             hide_keyboard(this);
         }
         switch (view.getId()) {
             // Check all conditions for validate the search
             case R.id.button_done_for_search:
-                if (NotiSearchConditions.forValidateSearch(editTextSearch.getText().toString(), sectionArts.isChecked(),
+                if (NotiSearchConditions.forValidateSearch(editTextForQuery.getText().toString(), sectionArts.isChecked(),
                         sectionAutomobiles.isChecked(), sectionBooks.isChecked(), sectionBusiness.isChecked(),
                         sectionFashion.isChecked(), sectionFood.isChecked(), sectionHealth.isChecked(),sectionHome.isChecked(),sectionInsider.isChecked(),sectionMagazine.isChecked(),this,this)
                         && DateHelper.datesAreValid(this, mBeginDate, mEndDate)) {
@@ -368,12 +383,12 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             // Time picker for select the desired hour of Notifications
-            case R.id.edit_text_hour_of_notifications:
+            case R.id.button_time_picker:
                 TimePickerDialog timePickerDialog = new TimePickerDialog(this,
                         (view1, hourOfDay, minute) -> {
-                            mHourOfNotifications = hourOfDay + ":" + minute;
-                            editTextHourOfNotifications.setText(mHourOfNotifications);
-                        }, hour, min, false);
+                            mHourTimePicker = hourOfDay + ":" + minute;
+                            buttonTimePicker.setText(mHourTimePicker);
+                        }, hour, min, true);
                 timePickerDialog.show();
                 break;
             // Here we add section arts when checkbox is checked
@@ -699,7 +714,7 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onGetRequestFocus(boolean bool) {
-        if (bool) { editTextSearch.requestFocus();
+        if (bool) { editTextForQuery.requestFocus();
         }
     }
 

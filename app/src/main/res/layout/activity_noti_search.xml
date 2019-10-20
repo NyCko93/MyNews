@@ -18,8 +18,8 @@
         android:id="@+id/section_arts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/edit_text_search"
-        android:layout_alignTop="@+id/edit_text_search"
+        android:layout_alignStart="@+id/edit_text_for_query"
+        android:layout_alignTop="@+id/edit_text_for_query"
         android:layout_marginStart="50dp"
         android:layout_marginTop="150dp"
         android:text="@string/section_arts"
@@ -61,8 +61,8 @@
         android:id="@+id/section_business"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/edit_text_search"
-        android:layout_alignTop="@+id/edit_text_search"
+        android:layout_alignStart="@+id/edit_text_for_query"
+        android:layout_alignTop="@+id/edit_text_for_query"
         android:layout_marginStart="220dp"
         android:layout_marginTop="150dp"
         android:text="@string/section_business"
@@ -157,7 +157,7 @@
 
     <!-- EDIT TEXT SEARCH -->
     <EditText
-        android:id="@+id/edit_text_search"
+        android:id="@+id/edit_text_for_query"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -178,7 +178,7 @@
         android:id="@+id/text_view_begin_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/edit_text_search"
+        android:layout_alignTop="@+id/edit_text_for_query"
         android:layout_marginStart="60dp"
         android:layout_marginTop="60dp"
         android:text="@string/begin_date" />
@@ -204,7 +204,7 @@
         android:id="@+id/text_view_end_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/edit_text_search"
+        android:layout_alignTop="@+id/edit_text_for_query"
         android:layout_marginStart="220dp"
         android:layout_marginTop="60dp"
         android:text="@string/end_date" />
@@ -238,7 +238,7 @@
 
     <!-- TEXT VIEW HOUR OF REQUEST FOR NOTIFICATIONS -->
     <TextView
-        android:id="@+id/text_view_hour_of_notifications"
+        android:id="@+id/text_view_time_picker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@id/bar"
@@ -249,15 +249,15 @@
 
     <!-- EDIT TEXT HOUR OF REQUEST FOR NOTIFICATIONS -->
     <TextView
-        android:id="@+id/edit_text_hour_of_notifications"
+        android:id="@+id/button_time_picker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@id/bar"
-        android:layout_alignBottom="@id/text_view_hour_of_notifications"
+        android:layout_alignBottom="@id/text_view_time_picker"
         android:clickable="true"
         android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
         android:focusable="true"
-        android:hint="@string/hour"
+        android:hint="@string/open_time_picker"
         android:longClickable="false"
         android:textColor="@color/colorSection"
         android:textSize="20sp" />
@@ -267,7 +267,7 @@
         android:id="@+id/text_enable_notifications"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@id/text_view_hour_of_notifications"
+        android:layout_alignStart="@id/text_view_time_picker"
         android:layout_alignTop="@id/bar"
         android:layout_marginTop="60dp"
         android:text="@string/enable_notifications"

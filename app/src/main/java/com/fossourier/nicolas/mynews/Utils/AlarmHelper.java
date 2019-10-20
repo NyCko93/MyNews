@@ -13,13 +13,16 @@ import java.util.Calendar;
 public class AlarmHelper {
 
     public void configureAlarmNotif(Context context, boolean switchNotif, Calendar notifTime) {
-
+           //---------------------------------------------//
+          //  DISPLAY A TOAST WITH THE STATUT OF ALARM   //
+         //  Notifications Enable if switchNotif = true //
+        //---------------------------------------------//
         AlarmManager mAlarmManager;
         PendingIntent mPendingIntent;
-
         mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        // AlarmManager activate, update data
         if (switchNotif) {
-            Intent intent = new Intent(context, BroadcastReceiverNotifications.class);
+            Intent intent = new Intent(context, AlarmReceiver.class);
             mPendingIntent = PendingIntent.getBroadcast(context, 0, intent,
                     PendingIntent.FLAG_UPDATE_CURRENT);
             if (mAlarmManager != null) {
@@ -28,31 +31,26 @@ public class AlarmHelper {
                 AlarmToastHelper.alarmToast(true, context);
             }
         }
-
+        // AlarmManager activate, hour per default
         if (mAlarmManager != null && switchNotif) {
-            Intent intent = new Intent(context, BroadcastReceiverNotifications.class);
+            Intent intent = new Intent(context, AlarmReceiver.class);
             mPendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
             mAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP, notifTime.getTimeInMillis(),
                     AlarmManager.INTERVAL_DAY, mPendingIntent);
             AlarmToastHelper.alarmToast(true, context);
         }
+        // AlarmManager desactivate if no NotifSwitch
         if (!switchNotif && mAlarmManager != null) {
-            Intent intent = new Intent(context, BroadcastReceiverNotifications.class);
+            Intent intent = new Intent(context, AlarmReceiver.class);
             mPendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
             mAlarmManager.cancel(mPendingIntent);
             AlarmToastHelper.alarmToast(false, context);
         }
     }
-
      static class AlarmToastHelper {
-
-        /**
-         * send a toast when alarm is set or unset
-         *
-         * @param state   : (bool) true is enable, false is disable
-         * @param context : (Context) activity context
-         */
-
+           //-------------------------------------------//
+          // DISPLAY A TOAST WITH THE STATUT OF ALARM  //
+         //-------------------------------------------//
         static void alarmToast(boolean state, Context context) {
             if (state) {
                 Toast.makeText(context,
@@ -65,6 +63,4 @@ public class AlarmHelper {
             }
         }
     }
-
-
 }

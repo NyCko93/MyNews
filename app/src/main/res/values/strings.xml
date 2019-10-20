@@ -90,29 +90,41 @@
 
 
     <!-- Used in NotiSearchActivity -->
-    <string name="begin_date">BEGIN DATE</string>
-    <string name="end_date">END DATE</string>
-    <string name="notification_time">Notification time</string>
-    <string name="hint_search">Search query term</string>
-    <string name="noti_search_date">dd/mm/yyyy</string>
-    <string name="enable_notifications">ENABLE  NOTIFICATIONS</string>
-    <string name="search_fields">SEARCH</string>
-    <string name="boolean_notisearch" />
-    <string name="no_result">NO RESULT</string>
-    <string name="ErrorRequestSearch">Error Request Search !!</string>
+    <string name="boolean_notisearch">BOOLEAN NOTISEARCH</string>
     <string name="check_query_fields">Please enter query term</string>
     <string name="check_checkbox">Select minimum one section</string>
-    <string name="ALARM_ACTIVATE">Alarm activate</string>
-    <string name="ALARM_DESACTIVATE">Alarm desactivate</string>
-    <string name="alarm_keywords_date">Search by keyword at the date of yyyyMMdd:</string>
-    <string name="onErrorRequestNotifications">onError Request Notifications</string>
-    <string name="requestNotificationsCompleted">Request Notifications Completed</string>
-    <string name="notificationTitle">Notifications</string>
-    <string name="yourResearch">Your research</string>
-    <string name="articles">articles.</string>
-    <string name="chanelID">chanel ID</string>
+
+
+    <string name="ErrorRequestSearch">Error Request Search !!</string>
+
+
+    <!-- Used for Search -->
+    <string name="search_fields">SEARCH</string>
+    <string name="no_result">NO RESULT</string>
     <string name="checkDateSelected">Select date for your search</string>
     <string name="checkBeginAndEndDate">Check that the begin date is more old than the end date</string>
-    <string name="hour">Hour</string>
+    <string name="begin_date">BEGIN DATE</string>
+    <string name="end_date">END DATE</string>
+    <string name="hint_search">Search query term</string>
+    <string name="noti_search_date">dd/mm/yyyy</string>
+
+
+    <!-- Used for Notifications -->
+    <string name="enable_notifications">ENABLE  NOTIFICATIONS</string>
+    <string name="ALARM_ACTIVATE">Alarm activate</string>
+    <string name="ALARM_DESACTIVATE">Alarm desactivate</string>
+    <string name="notification_time">Notification time</string>
+    <string name="open_time_picker">OPEN TIME PICKER</string>
+    <string name="chanelID">chanel ID</string>
+    <string name="notificationTitle">Notifications</string>
+    <string name="notif_other_sdk">Mynews have a message for you</string>
+
+
+    <!-- Used for the text notification displayed by system -->
+    <!-- Use \u0020 for adding a space -->
+    <string name="yourResearch">Your research for\u0020</string>
+    <string name="found">\u0020on MyNews has found\u0020</string>
+    <string name="articles">\u0020articles.</string>
+
 
 </resources>

@@ -235,20 +235,33 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Main
     public boolean onOptionsItemSelected(MenuItem item) {
         // Starting corresponding activity once clicked on items
         switch (item.getItemId()) {
+            // display a menu with Notifications, Help and About
             case R.id.menu_options:
                 return true;
+            // display the layout NotiSearch with all elements for Notifications
             case R.id.item_notifications:
                 Intent notificationIntent = new Intent(MainActivity.this,
                         NotiSearchActivity.class);
                 notificationIntent.putExtra(getString(R.string.boolean_notisearch), false);
                 startActivity(notificationIntent);
                 return true;
+            // display the layout NotiSearch with all elements for Search
             case R.id.item_search:
                 Intent searchActivityIntent = new Intent(MainActivity.this,
                         NotiSearchActivity.class);
                 searchActivityIntent.putExtra(getString(R.string.boolean_notisearch), true);
                 startActivity(searchActivityIntent);
                 return true;
+            // display the layout Help
+            case R.id.item_help:
+                Intent helpActivityIntent = new Intent(MainActivity.this,
+                        HelpActivity.class);
+                startActivity(helpActivityIntent);
+            // display the layout About
+            case R.id.item_about:
+                Intent aboutActivityIntent = new Intent(MainActivity.this,
+                        AboutActivity.class);
+                startActivity(aboutActivityIntent);
             default:
                 return super.onOptionsItemSelected(item);
         }
