@@ -2,6 +2,7 @@ package com.fossourier.nicolas.mynews.Utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -17,7 +18,7 @@ public class SharedPreferences {
     private static final String SECTIONOFNOTIFICATIONS = "SECTIONOFNOTIFICATIONS";
     private String notifTime;
 
-    private SharedPreferences(Context context) {
+    public SharedPreferences(Context context) {
         String PREFS="PREFS";
         prefs = context.getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
     }

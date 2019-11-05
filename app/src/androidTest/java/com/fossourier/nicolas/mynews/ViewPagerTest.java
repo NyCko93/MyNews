@@ -22,6 +22,8 @@ import static org.hamcrest.Matchers.allOf;
 
 public class ViewPagerTest {
 
+    private MainActivity mMainActivity;
+
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
     

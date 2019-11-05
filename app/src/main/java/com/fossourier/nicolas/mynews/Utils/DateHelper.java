@@ -19,7 +19,7 @@ public class DateHelper {
 
     public static String convertDate(String nytDate) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
-        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
         Date date = null;
         try { date = inputFormat.parse(nytDate); }
         catch (ParseException e) { e.printStackTrace(); }
@@ -27,8 +27,8 @@ public class DateHelper {
     }
 
     public static String convertDatePicker(String datePicker) {
-        SimpleDateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
-        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
         Date date = null;
         try { date = inputFormat.parse(datePicker); }
         catch (ParseException e) { e.printStackTrace(); }
@@ -71,8 +71,7 @@ public class DateHelper {
     }
 
     public static boolean testDatesAreValid(String beginDate, String endDate) {
-        return beginDate.isEmpty() || endDate.isEmpty()
-                || Integer.parseInt(beginDate) <= Integer.parseInt(endDate);
+        return beginDate.isEmpty() || endDate.isEmpty() || Integer.parseInt(beginDate) <= Integer.parseInt(endDate);
     }
 
     public static Calendar setTimeNotif(String savedTime) {
