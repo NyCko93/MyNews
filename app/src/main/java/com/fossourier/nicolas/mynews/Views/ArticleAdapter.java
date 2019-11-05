@@ -40,7 +40,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
     public ArticleAdapter(List<Result> listArticles, RequestManager glide, RecyclerViewOnClickListener listener) {
         this.listArticles = listArticles;
         this.glide = glide;
-        this.listener = listener;
+        this.listener = (RecyclerViewOnClickListener) listener;
     }
 
     @NotNull
