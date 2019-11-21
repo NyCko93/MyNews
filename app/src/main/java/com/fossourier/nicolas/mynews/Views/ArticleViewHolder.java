@@ -1,10 +1,10 @@
 package com.fossourier.nicolas.mynews.Views;
 
 import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,12 +13,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.fossourier.nicolas.mynews.Models.Result;
 import com.fossourier.nicolas.mynews.R;
 
-
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.fossourier.nicolas.mynews.R.drawable.nytimes_default;
 
 // ----------------------//
 // ITEM OF RECYCLERVIEW  //
@@ -65,15 +61,19 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder  implements View.
         // -----------------//
         // For image getMultimedia
         if (listArticles.getMultimedia() != null && listArticles.getMultimedia().size() >= 1) {
-            glide.load(listArticles.getMultimedia().get(0).getUrl()).apply(RequestOptions.centerInsideTransform()).into(imageArticle);
+            glide.load(listArticles.getMultimedia().get(0).getUrl())
+                    .apply(RequestOptions.centerInsideTransform())
+                    .into(imageArticle);
         }
         // For image getMedia
         else if(listArticles.getMedia() != null && listArticles.getMedia().size() >= 1) {
-            glide.load(listArticles.getMedia().get(0).getMediaMetadata().get(0).getUrl()).apply(RequestOptions.centerInsideTransform()).into(imageArticle);
+            glide.load(listArticles.getMedia().get(0).getMediaMetadata().get(0).getUrl())
+                    .apply(RequestOptions.centerInsideTransform())
+                    .into(imageArticle);
         }
-        // Default image if no multimedia and no media
-        else{
-            glide.load(nytimes_default).apply(RequestOptions.centerCropTransform()).into(imageArticle);
+        // If no Image
+        else {
+            glide.load(R.drawable.nytimes_default).into(imageArticle);
         }
     }
 

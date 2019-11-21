@@ -1,13 +1,18 @@
 package com.fossourier.nicolas.mynews.Views;
 
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.fossourier.nicolas.mynews.Models.Doc;
 import com.fossourier.nicolas.mynews.R;
 
@@ -35,24 +40,24 @@ public class ResultOfSearchViewHolder extends RecyclerView.ViewHolder implements
         ButterKnife.bind(this, itemView);
     }
 
-    void updateWithResult(final Doc listSearchArticle, RequestManager glide) {
+    void updateWithResult(Doc listSearchArticle, RequestManager glide) {
 
-          //---------------//
-         //    ABSTRACT   //
+        //---------------//
+        //    ABSTRACT   //
         //---------------//
         if (listSearchArticle.getHeadline() != null) {
             this.textContentSearch.setText(listSearchArticle.getHeadline().getMain());
         }
 
-          //-----------------//
-         // PUBLISHED DATE  //
+        //-----------------//
+        // PUBLISHED DATE  //
         //-----------------//
         if (listSearchArticle.getPubDate() != null) {
             this.textDateSearch.setText(listSearchArticle.getPubDate().substring(0, 10));
         }
 
-          //--------------//
-         // SECTION NAME //
+        //--------------//
+        // SECTION NAME //
         //--------------//
         if (listSearchArticle.getSectionName() != null) {
             this.textSectionSearch.setText(listSearchArticle.getSectionName());
@@ -60,15 +65,20 @@ public class ResultOfSearchViewHolder extends RecyclerView.ViewHolder implements
             textSectionSearch.setText("");
         }
 
-          //-----------------//
-         //      IMAGE      //
+        //-----------------//
+        //      IMAGE      //
         //-----------------//
         if (listSearchArticle.getMultimedia() != null && listSearchArticle.getMultimedia().size() >= 1) {
-            glide.load(listSearchArticle.getMultimedia().get(0).getUrl()).apply(RequestOptions.centerInsideTransform()).into(imageSearch);
+            glide.load(listSearchArticle.getMultimedia().get(0).getUrl()
+                    .replace("https","http"))
+                    .override(241, 158)
+                    .error(R.drawable.nytimes_default)
+                    .into(imageSearch);
         } else {
             imageSearch.setImageResource(R.drawable.nytimes_default);
         }
-    }
+}
+
 
     @Override
     public void onClick(View v) {

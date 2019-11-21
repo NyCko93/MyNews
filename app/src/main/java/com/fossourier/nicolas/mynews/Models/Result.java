@@ -43,7 +43,7 @@ public class Result {
 
     @SerializedName("multimedia")
     @Expose
-    private List<Multimedium> multimedia = null;
+    private  List<Multimedium> multimedia = null;
     @SerializedName("type")
     @Expose
     private String type;
@@ -117,7 +117,7 @@ public class Result {
     }
 
 
-    public List<Multimedium> getMultimedia() {
+    public  List<Multimedium> getMultimedia() {
         return multimedia;
     }
 
