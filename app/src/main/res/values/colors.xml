@@ -8,5 +8,6 @@
     <color name="colorSection">#000000</color>
     <color name="colorBackgroundCase">#D3D3D3</color>
     <color name="colorCursor">#808080</color>
+    <color name="colorRed">#850606</color>
 
 </resources>

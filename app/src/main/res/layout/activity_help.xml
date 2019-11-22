@@ -1,9 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_help"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Controllers.Activities.HelpActivity">
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/need_help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:text="@string/you_need_help_contact_me"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="180dp"/>
+
+    <TextView
+        android:id="@+id/twitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:text="@string/twitter"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="60dp"
+        android:layout_alignStart="@+id/need_help"
+        android:layout_alignTop="@+id/need_help"
+        />
+
+    <TextView
+        android:id="@+id/facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:text="@string/facebook"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="60dp"
+        android:layout_alignStart="@+id/twitter"
+        android:layout_alignTop="@+id/twitter"
+        />
+
+    <TextView
+        android:id="@+id/github"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:text="@string/github"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="60dp"
+        android:layout_alignStart="@+id/facebook"
+        android:layout_alignTop="@+id/facebook"
+        />
+
+    <TextView
+        android:id="@+id/google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:text="@string/gmail"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="60dp"
+        android:layout_alignStart="@+id/github"
+        android:layout_alignTop="@+id/github"
+        />
+
+    <TextView
+        android:id="@+id/twitter_nycko"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="200dp"
+        android:layout_marginEnd="0dp"
+        android:text="@string/nycko93"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="60dp"
+        android:layout_alignTop="@id/need_help"
+        android:layout_alignEnd="@id/need_help"
+        />
+
+    <TextView
+        android:id="@+id/facebook_nycko"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="200dp"
+        android:layout_marginEnd="0dp"
+        android:text="@string/nycko93fb"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:layout_marginTop="60dp"
+        android:layout_alignTop="@id/twitter_nycko"
+        android:layout_alignEnd="@id/twitter_nycko"
+        />
+
+    <TextView
+        android:id="@+id/github_nycko"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="200dp"
+        android:layout_marginEnd="0dp"
+        android:text="@string/nycko93fb"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textColor="@color/colorSection"
+        android:layout_marginTop="60dp"
+        android:layout_alignTop="@id/facebook_nycko"
+        android:layout_alignEnd="@id/facebook_nycko"
+        />
+
+    <TextView
+        android:id="@+id/gmail_nycko"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="200dp"
+        android:layout_marginEnd="0dp"
+        android:text="@string/fenyxnycko"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textColor="@color/colorRed"
+        android:layout_marginTop="60dp"
+        android:layout_alignTop="@id/github_nycko"
+        android:layout_alignEnd="@id/github_nycko"
+        />
+
+
+</RelativeLayout>

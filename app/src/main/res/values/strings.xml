@@ -125,6 +125,16 @@
     <string name="yourResearch">Your research for\u0020</string>
     <string name="found">\u0020on MyNews has found\u0020</string>
     <string name="articles">\u0020articles.</string>
+    <string name="application_developed_by_nycko93_for_the_project_5_of_android_course_by_openclassrooms">Application developed by NyCko93 for the project 5 of android course by Openclassrooms.</string>
+    <string name="you_need_help_contact_me">You need help ? Contact me :</string>
+    <string name="twitter">Twitter :</string>
+    <string name="facebook">Facebook :</string>
+    <string name="github">GitHub :</string>
+    <string name="google">Google+ :</string>
+    <string name="nycko93">#NyCko93</string>
+    <string name="nycko93fb">/NyCko93</string>
+    <string name="gmail">Gmail :</string>
+    <string name="fenyxnycko">fenyxnycko</string>
 
 
 </resources>
