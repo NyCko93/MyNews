@@ -12,6 +12,7 @@ import static junit.framework.TestCase.assertTrue;
 @RunWith(AndroidJUnit4.class)
 public class NewYorkTimesStreamsTest {
 
+    // Test the request TopStories with "books" in section selected
     @Test
     public void streamTopStoriesTest() {
         Observable<Article> observable = NewYorkTimesStreams.streamTopStories("books");
@@ -24,6 +25,7 @@ public class NewYorkTimesStreamsTest {
         assertTrue(articlesTopStories.getResult().size() > 0);
     }
 
+    // Test the request MostPopular with a period of 30 day
     @Test
     public void checkHttpRequest() {
         Observable<Article> observableArticles = NewYorkTimesStreams.streamMostPopular("30");

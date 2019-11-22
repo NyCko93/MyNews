@@ -26,7 +26,8 @@ public class ViewPagerTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
-    
+
+    // Test if the viewpager display the fragments TopStories and MostPopular
     @Test
     public void viewPagerTest() {
         onView(withId(R.id.view_pager)).check(matches(isDisplayed()));
@@ -43,6 +44,5 @@ public class ViewPagerTest {
                 .perform(click())
                 .check(matches(isSelected()));
         swipeLeft();
-
     }
 }

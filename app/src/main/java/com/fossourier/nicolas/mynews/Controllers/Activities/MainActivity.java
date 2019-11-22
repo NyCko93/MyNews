@@ -257,11 +257,13 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Main
                 Intent helpActivityIntent = new Intent(MainActivity.this,
                         HelpActivity.class);
                 startActivity(helpActivityIntent);
+                return true;
             // display the layout About
             case R.id.item_about:
                 Intent aboutActivityIntent = new Intent(MainActivity.this,
                         AboutActivity.class);
                 startActivity(aboutActivityIntent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

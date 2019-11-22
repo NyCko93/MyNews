@@ -16,8 +16,11 @@ import com.bumptech.glide.request.target.Target;
 import com.fossourier.nicolas.mynews.Models.Doc;
 import com.fossourier.nicolas.mynews.R;
 
+import java.net.URL;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.http.Url;
 
 public class ResultOfSearchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -69,9 +72,7 @@ public class ResultOfSearchViewHolder extends RecyclerView.ViewHolder implements
         //      IMAGE      //
         //-----------------//
         if (listSearchArticle.getMultimedia() != null && listSearchArticle.getMultimedia().size() >= 1) {
-            glide.load(listSearchArticle.getMultimedia().get(0).getUrl()
-                    .replace("https","http"))
-                    .override(241, 158)
+            glide.load("https://static01.nyt.com/" + listSearchArticle.getMultimedia().get(0).getUrl())
                     .error(R.drawable.nytimes_default)
                     .into(imageSearch);
         } else {

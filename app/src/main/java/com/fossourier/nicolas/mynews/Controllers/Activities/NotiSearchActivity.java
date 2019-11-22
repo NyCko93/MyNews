@@ -299,6 +299,15 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
         });
     }
 
+      //------------------------------------------------//
+     // Check if buttonSwitchNotifications is checked  //
+    //------------------------------------------------//
+    public static boolean checkButtonSwitchNotifications(boolean switchValue){
+        boolean buttonSwitchNotifications = false;
+        if(switchValue){ buttonSwitchNotifications = true; }
+        return buttonSwitchNotifications;
+    }
+
       //---------------------------------------------------------------------//
      // Get the selected hour or get the hour per default for Notifications //
     //---------------------------------------------------------------------//

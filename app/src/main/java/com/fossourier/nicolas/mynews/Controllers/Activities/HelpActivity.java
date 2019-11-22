@@ -6,12 +6,13 @@ import androidx.appcompat.widget.Toolbar;
 
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.fossourier.nicolas.mynews.R;
 
-import java.util.Properties;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class HelpActivity extends AppCompatActivity {
 
@@ -22,6 +23,7 @@ public class HelpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
+        ButterKnife.bind(this);
         configureToolBar();
     }
 
@@ -34,6 +36,17 @@ public class HelpActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
         assert ab != null;
     }
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case android.R.id.home:
+////                 Respond to the action bar's Up/Home button
+//                return false;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
+
 
     @Override
     public void onBackPressed() {

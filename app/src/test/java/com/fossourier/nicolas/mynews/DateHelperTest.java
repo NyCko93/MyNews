@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class DateHelperTest {
 
-    // test for convertDate
+    // Test for convertDate
     @Test
     public void convertDateTest(){
         String dateInput = "2019-09-21T11:20:42";
@@ -15,7 +15,7 @@ public class DateHelperTest {
         Assert.assertEquals(dateOutput, DateHelper.convertDate(dateInput));
     }
 
-    // test for convertDatePicker
+    // Test for convertDatePicker
     @Test
     public void convertDatePickerTest(){
         String dateInput = "2019-09-21";
@@ -23,7 +23,7 @@ public class DateHelperTest {
         Assert.assertEquals(dateOutput, DateHelper.convertDatePicker(dateInput));
     }
 
-    // test for testDatesAreValid
+    // Test for testDatesAreValid
     @Test
     public void dateValidationForSearchTest(){
         String beginDate = "20160711";

@@ -90,12 +90,12 @@ public class SharedPreferences {
       //-----------------------------------------//
      // Store sections of notifications choisen //
     //-----------------------------------------//
-    public void storeSectionOfNotifications(List<String> categories) {
+    public void storeSectionOfNotifications(List<String> sections) {
         //start writing
         android.content.SharedPreferences.Editor editor = prefs.edit();
         //put the data
         Gson gson = new Gson();
-        String json = gson.toJson(categories);
+        String json = gson.toJson(sections);
         editor.putString(SECTIONOFNOTIFICATIONS, json);
         //close the file
         editor.apply();
@@ -161,5 +161,33 @@ public class SharedPreferences {
 
     public String getNotifTime() {
         return prefs.getString("HOUROFNOTIFICATIONS", "");
+    }
+
+      //----------//
+     // For test //
+    //----------//
+      public void storeSectionOfNotificationsTest(List<String> sectionsTest) {
+          //start writing
+          android.content.SharedPreferences.Editor editor = prefs.edit();
+          //put the data
+          Gson gson = new Gson();
+          String json = gson.toJson(sectionsTest);
+          editor.putString(SECTIONOFNOTIFICATIONS, json);
+          //close the file
+          editor.apply();
+      }
+
+    public ArrayList<String> getSectionOfNotificationsTest() {
+        Gson gson = new Gson();
+        String json = prefs.getString(SECTIONOFNOTIFICATIONS, "");
+        ArrayList<String> sectionsTest;
+        if (json.length() < 1) {
+            sectionsTest = new ArrayList<>();
+        } else {
+            Type type = new TypeToken<ArrayList<String>>() {
+            }.getType();
+            sectionsTest = gson.fromJson(json, type);
+        }
+        return sectionsTest;
     }
 }
