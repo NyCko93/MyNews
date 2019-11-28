@@ -47,7 +47,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         String date = dateFormat.format(calendar.getTime());
         Log.i(getClass().getSimpleName(),
                 search + mContext.getResources() + date + mContext.getResources());
-        NewYorkTimesStreams.streamArticleSearch(search, listSections, date, date).subscribe(new Observer<SearchArticle>() {
+        NewYorkTimesStreams.streamFetchArticleSearch(search, listSections, date, date).subscribe(new Observer<SearchArticle>() {
             @Override
             public void onSubscribe(Disposable d) {
             }

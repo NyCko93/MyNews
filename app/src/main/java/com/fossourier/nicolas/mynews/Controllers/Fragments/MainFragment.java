@@ -98,7 +98,7 @@ public class MainFragment extends Fragment {
      //   opinion, politics, realestate, science, sports, sundayreview, technology, theater, tmagazine, travel, upshot, world                   //
     //-----------------------------------------------------------------------------------------------------------------------------------------//
     public void executeHttpRequestTopStories() {
-        NewYorkTimesStreams.streamTopStories("home").subscribe(new Observer<Article>() {
+        NewYorkTimesStreams.streamFetchTopStories("home").subscribe(new Observer<Article>() {
 
             @Override
             public void onSubscribe(Disposable d) {
@@ -128,7 +128,7 @@ public class MainFragment extends Fragment {
      // timePeriodDays == 1, 7 or 30 (days)     //
     //-----------------------------------------//
     public void executeHttpRequestMostPopular() {
-        NewYorkTimesStreams.streamMostPopular("7").subscribe(new Observer<Article>() {
+        NewYorkTimesStreams.streamFetchMostPopular("7").subscribe(new Observer<Article>() {
 
             @Override
             public void onSubscribe(Disposable d) {
@@ -158,7 +158,7 @@ public class MainFragment extends Fragment {
      // Section of TopStories //
     //-----------------------//
     public void executeHttpRequestSection(final String sectionChoisen) {
-        NewYorkTimesStreams.streamTopStories(sectionChoisen).subscribe(new Observer<Article>() {
+        NewYorkTimesStreams.streamFetchTopStories(sectionChoisen).subscribe(new Observer<Article>() {
 
             @Override
             public void onSubscribe(Disposable d) {
