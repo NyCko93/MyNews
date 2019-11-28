@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
@@ -25,24 +26,27 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         ButterKnife.bind(this);
-        configureToolBar();
+        configureToolbar();
     }
 
-    //-------------------//
-    // Configure Toolbar //
-    //-------------------//
-    private void configureToolBar() {
+    //----------------//
+    // Toolbar        //
+    //----------------//
+    private void configureToolbar() {
         setSupportActionBar(mToolbar);
         ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
         assert ab != null;
+        ab.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
-    public void onBackPressed() {
-        // Handle back click to close menu
-            super.onBackPressed();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
         }
 
+        return super.onOptionsItemSelected(item);
+    }
 }
 

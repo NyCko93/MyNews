@@ -1,15 +1,13 @@
 package com.fossourier.nicolas.mynews.Controllers.Activities;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-
-import android.os.Bundle;
-import android.view.MenuItem;
-
 import com.fossourier.nicolas.mynews.R;
-
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,33 +22,26 @@ public class HelpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
         ButterKnife.bind(this);
-        configureToolBar();
+        configureToolbar();
     }
 
-    //-------------------//
-    // Configure Toolbar //
-    //-------------------//
-    private void configureToolBar() {
+    //----------------//
+    // Toolbar        //
+    //----------------//
+    private void configureToolbar() {
         setSupportActionBar(mToolbar);
         ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
         assert ab != null;
+        ab.setDisplayHomeAsUpEnabled(true);
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case android.R.id.home:
-////                 Respond to the action bar's Up/Home button
-//                return false;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
-
     @Override
-    public void onBackPressed() {
-        // Handle back click to close menu
-        super.onBackPressed();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
