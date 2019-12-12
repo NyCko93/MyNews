@@ -1,7 +1,6 @@
 package com.fossourier.nicolas.mynews.Views;
 
 import android.annotation.SuppressLint;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;

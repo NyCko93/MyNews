@@ -4,7 +4,6 @@ package com.fossourier.nicolas.mynews.Utils;
 import androidx.annotation.Nullable;
 
 import com.fossourier.nicolas.mynews.Models.Article;
-import com.fossourier.nicolas.mynews.Models.Result;
 import com.fossourier.nicolas.mynews.Models.SearchArticle;
 
 import java.util.List;

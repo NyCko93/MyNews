@@ -649,7 +649,7 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
     //---------------------------//
     private void executeSearchRequest() {
         ArrayList<String> sections = mSharedPreferences.getListSection(1);
-        Disposable disposable = NewYorkTimesStreams.streamFetchArticleSearch(mQueryTermSearch,sections,mBeginDate,mEndDate)
+        Disposable disposable = NewYorkTimesStreams.streamFetchSearchArticle(mQueryTermSearch,sections,mBeginDate,mEndDate)
                 .subscribeWith(new DisposableObserver<SearchArticle>() {
                     @Override
                     public void onNext(SearchArticle searchArticle) {

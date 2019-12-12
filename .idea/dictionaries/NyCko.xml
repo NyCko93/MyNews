@@ -4,6 +4,7 @@
       <w>afficher</w>
       <w>articlesearch</w>
       <w>autofill</w>
+      <w>butterknife</w>
       <w>categorie</w>
       <w>chekbox</w>
       <w>choisen</w>
@@ -14,9 +15,12 @@
       <w>getm</w>
       <w>gmail</w>
       <w>gotno</w>
+      <w>gson</w>
+      <w>hong</w>
       <w>hourofnotifications</w>
       <w>jjrewi</w>
       <w>lastname</w>
+      <w>leung</w>
       <w>metadatum</w>
       <w>middlename</w>
       <w>mostpopular</w>
@@ -35,6 +39,7 @@
       <w>rdja</w>
       <w>realestate</w>
       <w>recyclerview</w>
+      <w>rxjava</w>
       <w>sectionchoisen</w>
       <w>sectionofnotifications</w>
       <w>sectionsearched</w>

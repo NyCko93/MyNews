@@ -1,9 +1,9 @@
 package com.fossourier.nicolas.mynews.Models;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class TopStoriesJson {
 
-    // Request: https://api.nytimes.com/svc/topstories/v2/home.json?api-key=h45EgQX6GOTNO8bJjrewi1URXmPvi54O
-    public static String topStoriesJson = "{" +
+    public static final String topStoriesJson = "{" +
             "\"status\": \"OK\"," +
             "\"copyright\": \"Copyright (c) 2019 The New York Times Company. All Rights Reserved.\"," +
             "\"section\": \"home\"," +

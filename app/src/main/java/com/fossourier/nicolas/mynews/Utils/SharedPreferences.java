@@ -2,7 +2,6 @@ package com.fossourier.nicolas.mynews.Utils;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -166,28 +165,28 @@ public class SharedPreferences {
       //----------//
      // For test //
     //----------//
-      public void storeSectionOfNotificationsTest(List<String> sectionsTest) {
+      public void storeListSectionOfNotificationsTest(List<String> listSectionOfNotificationsTest) {
           //start writing
           android.content.SharedPreferences.Editor editor = prefs.edit();
           //put the data
           Gson gson = new Gson();
-          String json = gson.toJson(sectionsTest);
+          String json = gson.toJson(listSectionOfNotificationsTest);
           editor.putString(SECTIONOFNOTIFICATIONS, json);
           //close the file
           editor.apply();
       }
 
-    public ArrayList<String> getSectionOfNotificationsTest() {
+    public ArrayList<String> getListSectionOfNotificationsTest() {
         Gson gson = new Gson();
         String json = prefs.getString(SECTIONOFNOTIFICATIONS, "");
-        ArrayList<String> sectionsTest;
+        ArrayList<String> listSectionOfNotificationsTest;
         if (json.length() < 1) {
-            sectionsTest = new ArrayList<>();
+            listSectionOfNotificationsTest = new ArrayList<>();
         } else {
             Type type = new TypeToken<ArrayList<String>>() {
             }.getType();
-            sectionsTest = gson.fromJson(json, type);
+            listSectionOfNotificationsTest = gson.fromJson(json, type);
         }
-        return sectionsTest;
+        return listSectionOfNotificationsTest;
     }
 }

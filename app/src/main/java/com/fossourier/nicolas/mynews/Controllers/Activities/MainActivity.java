@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Main
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private ViewPager viewPager;
+    public ViewPager viewPager;
     private TabLayout tabs;
     private PagerAdapter pagerAdapter;
     private static SharedPreferences mSharedPreferences;
