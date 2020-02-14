@@ -128,7 +128,7 @@ public class MainFragment extends Fragment {
      // timePeriodDays == 1, 7 or 30 (days)     //
     //-----------------------------------------//
     public void executeHttpRequestMostPopular() {
-        NewYorkTimesStreams.streamFetchMostPopular("7").subscribe(new Observer<Article>() {
+        NewYorkTimesStreams.streamFetchMostPopular("30").subscribe(new Observer<Article>() {
 
             @Override
             public void onSubscribe(Disposable d) {
