@@ -397,7 +397,7 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
                         (view1, hourOfDay, minute) -> {
                             mHourTimePicker = hourOfDay + ":" + minute;
                             buttonTimePicker.setText(mHourTimePicker);
-                        }, hour, min, true);
+                        }, hour, min, false);
                 timePickerDialog.show();
                 break;
             // Here we add section arts when checkbox is checked

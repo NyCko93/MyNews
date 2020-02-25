@@ -19,7 +19,7 @@ public class DateHelper {
 
     public static String convertDate(String nytDate) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy'T'HH:mm:ss", Locale.FRANCE);
         Date date = null;
         try { date = inputFormat.parse(nytDate); }
         catch (ParseException e) { e.printStackTrace(); }
