@@ -6,9 +6,7 @@ import android.net.NetworkInfo;
 
 import java.util.Objects;
 
-// @author emil http://stackoverflow.com/users/220710/emil
-// sourcecode https://gist.github.com/emil2k/5130324
-
+// Test of connectivity at network
 public class Connectivity {
 
     public static boolean networkInfo (Context context){

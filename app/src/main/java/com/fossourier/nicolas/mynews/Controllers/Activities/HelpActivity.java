@@ -25,9 +25,9 @@ public class HelpActivity extends AppCompatActivity {
         configureToolbar();
     }
 
-    //----------------//
-    // Toolbar        //
-    //----------------//
+      //---------//
+     // Toolbar //
+    //---------//
     private void configureToolbar() {
         setSupportActionBar(mToolbar);
         ActionBar ab = getSupportActionBar();
@@ -35,6 +35,9 @@ public class HelpActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
+      //-----------------------//
+     // Configure Back Button //
+    //-----------------------//
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

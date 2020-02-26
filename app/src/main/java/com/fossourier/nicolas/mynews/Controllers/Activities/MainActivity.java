@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Main
     private TabLayout tabs;
     private PagerAdapter pagerAdapter;
     private static SharedPreferences mSharedPreferences;
+
+    // Fragments TOPSTORIES and MOSTPOPULAR are fix
     public static final int TOP_STORIES = 0;
     public static final int  MOST_POPULAR = 1;
 
@@ -43,10 +45,13 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Main
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // List of Fragments with 3 instances
         ArrayList<MainFragment> mainFragments = new ArrayList<>();
         mainFragments.add(MainFragment.newInstance(0));
         mainFragments.add(MainFragment.newInstance(1));
         mainFragments.add(MainFragment.newInstance(2));
+
         pagerAdapter = new PagerAdapter(this, mainFragments, getSupportFragmentManager());
         viewPager = findViewById(R.id.view_pager);
         tabs = findViewById(R.id.tabs);
@@ -70,6 +75,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Main
         return true;
     }
 
+      //-------------------------------------------------------//
+     // Configure Back Button, if the drawer is open > close  //
+    //-------------------------------------------------------//
     @Override
     public void onBackPressed() {
         // Handle back click to close menu

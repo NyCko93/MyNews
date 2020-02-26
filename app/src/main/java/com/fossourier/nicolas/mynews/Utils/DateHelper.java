@@ -19,7 +19,7 @@ public class DateHelper {
 
     public static String convertDate(String nytDate) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy'T'HH:mm:ss", Locale.FRANCE);
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
         Date date = null;
         try { date = inputFormat.parse(nytDate); }
         catch (ParseException e) { e.printStackTrace(); }
@@ -45,15 +45,7 @@ public class DateHelper {
         return year + month + day;
     }
 
-    @SuppressLint("SetTextI18n")
-    public static String pickerFormatDateTest(int yearInt, int monthInt, int dayInt) {
-        String year = Integer.toString(yearInt);
-        String month = (monthInt + 1 < 10) ? "0" +
-                monthInt : Integer.toString(monthInt);
-        String day = (dayInt < 10) ? "0" + dayInt : Integer.toString(dayInt);
-        return year + month + day;
-    }
-
+    // Condition for validate a search
     public static boolean datesAreValid(Context context, String beginDate, String endDate) {
         if (!beginDate.isEmpty() && !endDate.isEmpty()
                 && Integer.parseInt(beginDate) > Integer.parseInt(endDate)) {
@@ -70,10 +62,12 @@ public class DateHelper {
         return true;
     }
 
+    // Compare beginDate and endDate for validate a search FOR TEST
     public static boolean testDatesAreValid(String beginDate, String endDate) {
         return beginDate.isEmpty() || endDate.isEmpty() || Integer.parseInt(beginDate) <= Integer.parseInt(endDate);
     }
 
+    // Hour of notification per default if not choisen
     public static Calendar setTimeNotif(String savedTime) {
         Calendar calendar = Calendar.getInstance(Locale.getDefault());
         Calendar tempCalendar = Calendar.getInstance(Locale.getDefault());
@@ -88,11 +82,13 @@ public class DateHelper {
             }
             assert date != null;
             tempCalendar.setTime(date);
+            // Notification for the tomorrow if hour is passed
             if (tempCalendar.get(Calendar.HOUR_OF_DAY) <= calendar.get(Calendar.HOUR_OF_DAY) ){
                 if (tempCalendar.get(Calendar.MINUTE) < calendar.get(Calendar.MINUTE)){
                     calendar.set(Calendar.DAY_OF_WEEK, calendar.get(Calendar.DAY_OF_WEEK)+1);
                 }
             }
+            // Hour of moment per default
             calendar.set(Calendar.HOUR_OF_DAY, tempCalendar.get(Calendar.HOUR_OF_DAY));
             calendar.set(Calendar.MINUTE, tempCalendar.get(Calendar.MINUTE));
             calendar.set(Calendar.SECOND, 0);

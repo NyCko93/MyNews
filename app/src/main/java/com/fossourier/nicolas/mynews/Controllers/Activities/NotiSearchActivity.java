@@ -666,6 +666,7 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
                 });
     }
 
+    // Display message per default if no result or display result
     private void setSearchFragment(SearchArticle searchArticle) {
         if (searchArticle.getResponse().getDocs().isEmpty()) {
             Toast.makeText(this, R.string.no_result,
@@ -685,6 +686,7 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    // We save param of Notifications always when we leave fragment or app for an eventually change
     @Override
     protected void onPause() {
         super.onPause();
@@ -732,6 +734,7 @@ public class NotiSearchActivity extends AppCompatActivity implements View.OnClic
         startResultOfSearchFragment(searchArticle);
     }
 
+    // Method for display result article in webview
     private void startResultOfSearchFragment(Doc searchArticle) {
         Intent intent = new Intent(NotiSearchActivity.this,
                 WebViewActivity.class);
